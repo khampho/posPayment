@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/loginlogout/login.dart';
@@ -29,8 +30,11 @@ class _ProfileState extends State<Profile> {
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset('assets/images/user_icon.png', width: 120,),
-
-               Text(box.read('P_fname') +" "+ box.read('P_lname') , style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
+                AutoSizeText(
+                  box.read('P_fname') +"  "+box.read('P_lname')  ,
+                      style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                  maxLines: 2,
+                ),
                 const SizedBox(
                   height: 40.0,
                 ),
@@ -58,7 +62,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0, 0, 16, 16),
+                        padding: const EdgeInsets.fromLTRB(10.0, 0, 16, 16),
                         child: Column(
                           children:  <Widget>[
                             Text(box.read('P_id'),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
@@ -85,7 +89,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 16),
+                        padding: const EdgeInsets.fromLTRB(20.0, 0, 16, 16),
                         child: Column(
                           children:  <Widget>[
                             Text(box.read('p_mobile'),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
@@ -111,7 +115,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 16),
+                        padding: const EdgeInsets.fromLTRB(0.0, 0, 16, 16),
                         child: Column(
                           children:  <Widget>[
                             Text(box.read('P_role'),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
@@ -138,10 +142,18 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 16),
+                        padding: const EdgeInsets.fromLTRB(34.0, 0, 16, 16),
                         child: Column(
-                          children:  <Widget>[
-                            Text( box.read('P_address'),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                          children:   <Widget>[
+                            SizedBox(
+                              width: 170,
+                              child: AutoSizeText(box.read('P_address') +"966a65ca1637133412263"
+                                ,
+                                style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),
+                                maxLines: 2,
+                              ),
+                            )
+                            //Text( box.read('P_address'),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
 
                           ],
                         ),
@@ -186,7 +198,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                Container(
-                 padding: const EdgeInsets.only(top: 40,bottom: 20),
+                 padding: const EdgeInsets.only(top: 70,bottom: 20),
                  child:   Align(
                    child: Text(
                        box.read('M_name'),
@@ -202,4 +214,5 @@ class _ProfileState extends State<Profile> {
     );
   }
 }
+
 

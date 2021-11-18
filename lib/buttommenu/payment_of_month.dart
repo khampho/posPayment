@@ -91,47 +91,50 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
             ),
             Expanded(
                 child: Container(
-              width: 300,
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(color: Colors.lightGreen, spreadRadius: 3),
-                ],
-              ),
-              child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                value: zone,
-                icon: const Icon(
-                  Icons.arrow_downward,
-                  color: Colors.green,
-                ),
-                iconSize: 24,
-                elevation: 16,
-                style: const TextStyle(color: Colors.green),
-                underline: Container(
-                  color: Colors.deepPurpleAccent,
-                ),
-                onChanged: (String? newZone) {
-                  var rs = custS.where((i) => i.zone == newZone).toList();
-                  setState(() {
-                    zone = newZone!;
-                    filtercustS = rs;
-                  });
-                },
-                items: <String>['Zone A', 'Zone B', 'Zone C', 'Zone D']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(fontSize: 20),
+                  width: 300,
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(color: Colors.lightGreen, spreadRadius: 3),
+                    ],
+                  ),
+                    child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                            value: zone,
+                            icon: const Icon(
+                              Icons.arrow_downward,
+                              color: Colors.green,
+                            ),
+                            iconSize: 24,
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.green),
+                            underline: Container(
+                              color: Colors.deepPurpleAccent,
+                            ),
+                          onChanged: (String? newZone) {
+                          var rs = custS.where((i) => i.zone == newZone).toList();
+                          setState(() {
+                            zone = newZone!;
+                            filtercustS = rs;
+                          });
+                          },
+                          items: <String>['Zone A', 'Zone B', 'Zone C', 'Zone D']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(fontSize: 20),
+                                    ),
+                                );
+                              }
+                            ).toList(),
+                      )
                     ),
-                  );
-                }).toList(),
-              )),
-            )),
+            )
+            ),
             const SizedBox(
               height: 3,
             ),

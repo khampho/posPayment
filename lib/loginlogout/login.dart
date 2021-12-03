@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
       );
       Map<String, dynamic> res = Map<String, dynamic>.from(jsonDecode(rs.body));
       return res;
-    }catch(e){
+    } catch (e) {
       //print(e);
       return e;
     }
@@ -39,7 +39,7 @@ class _LoginState extends State<Login> {
   getToken() async {
     var token = await createLoginModel();
     await box.write('token', token['data']['token']);
-   // print(box.read('token'));
+    // print(box.read('token'));
   }
 
   @override
@@ -173,8 +173,9 @@ class _LoginState extends State<Login> {
                                 await getToken();
                                 if (_formKey.currentState!.validate()) {
                                   if (box.hasData('token')) {
-                                   await profile();
-                                    await Navigator.pushNamed(context, '/HomeScreen');
+                                    await profile();
+                                    await Navigator.pushNamed(
+                                        context, '/HomeScreen');
                                   } else {
                                     Navigator.pushNamed(context, '/');
                                   }
@@ -194,9 +195,7 @@ class _LoginState extends State<Login> {
                       style: TextStyle(fontSize: 15),
                     ),
                   )
-                ]
-            )
-        ),
+                ])),
       ),
     );
   }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pospayment/Screens/homescreen.dart';
+import 'package:pospayment/buttommenu/homebuttommenu.dart';
 import 'package:pospayment/loginlogout/login.dart';
-
 
 class MaterilRoutes extends StatefulWidget {
   const MaterilRoutes({Key? key}) : super(key: key);
@@ -18,12 +17,12 @@ class _MaterilRoutesState extends State<MaterilRoutes> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: box.hasData('token')  ? "/" : "login",
+      initialRoute: box.hasData('token') ? "/" : "login",
       routes: {
         '/': (context) => const Login(
-          title: "login",
-        ),
-        '/HomeScreen': (context) =>  const HomeScreen(),
+              title: "login",
+            ),
+        '/HomeScreen': (context) => const HomeMenu(),
       },
     );
   }

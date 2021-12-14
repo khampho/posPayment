@@ -4,7 +4,7 @@ import 'outstanding_report_day.dart';
 import 'outstanding_report_month.dart';
 
 class OutStanding extends StatefulWidget {
-  const OutStanding({Key? key}) : super(key: key);
+  const OutStanding({Key key}) : super(key: key);
 
   @override
   _OutStandingState createState() => _OutStandingState();
@@ -23,14 +23,14 @@ class _OutStandingState extends State<OutStanding> {
             tabs: [
               Tab(
                   child: Text(
-                'ລາຍວັນ',
+                'ລາຍເດືອນ',
                 style: TextStyle(
                   fontSize: 18,
                 ),
               )),
               Tab(
                   child: Text(
-                'ລາຍເດືອນ',
+                'ລາຍປີ',
                 style: TextStyle(fontSize: 18),
               )),
             ],

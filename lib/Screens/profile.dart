@@ -6,7 +6,7 @@ import 'package:pospayment/loginlogout/login.dart';
 import 'package:pospayment/loginlogout/logout.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  const Profile({Key key}) : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -19,7 +19,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ຂໍ້ມູນຜູ້ໃຊ້'),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.tealAccent.shade400,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -177,7 +177,7 @@ class _ProfileState extends State<Profile> {
                             SizedBox(
                               width: 170,
                               child: AutoSizeText(
-                                box.read('P_address') + "966a65ca1637133412263",
+                                box.read('P_address'),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 16),
                                 maxLines: 2,
@@ -233,7 +233,7 @@ class _ProfileState extends State<Profile> {
                   child: Align(
                     child: Text(box.read('M_name'),
                         style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
+                            fontSize: 18, fontWeight: FontWeight.bold)),
                   ),
                 )
               ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class OutstandingReportOfDay extends StatefulWidget {
-  const OutstandingReportOfDay({Key? key}) : super(key: key);
+  const OutstandingReportOfDay({Key key}) : super(key: key);
 
   @override
   _OutstandingReportOfDayState createState() => _OutstandingReportOfDayState();
@@ -104,5 +104,5 @@ class DataId {
   int id;
   String time;
   int qty;
-  DataId({required this.id, required this.time, required this.qty});
+  DataId({this.id, this.time, this.qty});
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pospayment/Screens/profile.dart';
 
 class PaymentOfMonth extends StatefulWidget {
-  const PaymentOfMonth({Key? key}) : super(key: key);
+  const PaymentOfMonth({Key key}) : super(key: key);
 
   @override
   _PaymentOfMonthState createState() => _PaymentOfMonthState();
@@ -14,30 +14,18 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
 
   ///
   final List<Customer> custS = [
-    Customer(id: 1, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone A'),
-    Customer(id: 2, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone A'),
-    Customer(id: 3, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone A'),
-    Customer(id: 4, name: "ຮ້ານ ນາງແສງຈັນ", zone: 'Zone A'),
-    Customer(id: 1, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone A'),
-    Customer(id: 2, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone A'),
-    Customer(id: 3, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone A'),
-    Customer(id: 4, name: "ຮ້ານ ນາງແສງຈັນ", zone: 'Zone A'),
-    Customer(id: 1, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone A'),
-    Customer(id: 2, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone A'),
-    Customer(id: 3, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone A'),
-    Customer(id: 4, name: "ຮ້ານ ນາງແສງຈັນ", zone: 'Zone A'),
-    Customer(id: 1, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone A'),
-    Customer(id: 2, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone A'),
-    Customer(id: 3, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone A'),
-    Customer(id: 4, name: "ຮ້ານ ນາງແສງຈັນ", zone: 'Zone A'),
-    Customer(id: 5, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone B'),
-    Customer(id: 6, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone B'),
-    Customer(id: 7, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone B'),
-    Customer(id: 8, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone B'),
-    Customer(id: 9, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone C'),
-    Customer(id: 10, name: "ຮ້ານ ນາງແສງຈັນ", zone: 'Zone C'),
-    Customer(id: 11, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone D'),
-    Customer(id: 13, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone D'),
+    Customer(id: 1, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone A',status: 1),
+    Customer(id: 2, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone A',status: 1),
+    Customer(id: 3, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone A',status: 0),
+    Customer(id: 4, name: "ຮ້ານ ນາງແສງຈັນ", zone: 'Zone A',status: 1),
+    Customer(id: 5, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone B',status: 1),
+    Customer(id: 6, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone B',status: 1),
+    Customer(id: 7, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone B',status: 1),
+    Customer(id: 8, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone B',status: 0),
+    Customer(id: 9, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone C',status: 1),
+    Customer(id: 10, name: "ຮ້ານ ນາງແສງຈັນ", zone: 'Zone C',status: 0),
+    Customer(id: 11, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone D',status: 0),
+    Customer(id: 13, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone D',status: 1),
   ];
 
   List<Customer> filtercustS = [];
@@ -132,10 +120,10 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
                 underline: Container(
                   color: Colors.deepPurpleAccent,
                 ),
-                onChanged: (String? newZone) {
+                onChanged: (String newZone) {
                   var rs = custS.where((i) => i.zone == newZone).toList();
                   setState(() {
-                    zone = newZone!;
+                    zone = newZone;
                     filtercustS = rs;
                   });
                 },
@@ -183,7 +171,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
               minimumSize: const Size(50, 30),
-              alignment: Alignment.centerLeft,
+              // alignment: Alignment.centerLeft,
             ),
             onPressed: () {
               //print(_customer[index].name);
@@ -198,7 +186,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
             icon: const Icon(
               Icons.arrow_right,
               size: 40,
-              color: Colors.green,
+              color:Colors.green,
             ),
           ),
         ],
@@ -211,5 +199,6 @@ class Customer {
   var id;
   var name;
   var zone;
-  Customer({this.id, this.name, this.zone});
+  int status;
+  Customer({this.id, this.name, this.zone,this.status});
 }

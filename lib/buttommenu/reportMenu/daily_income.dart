@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DailyIncome extends StatefulWidget {
-  const DailyIncome({Key? key}) : super(key: key);
+  const DailyIncome({Key key}) : super(key: key);
 
   @override
   _DailyIncomeState createState() => _DailyIncomeState();
@@ -147,5 +147,6 @@ class DataId {
   final int id;
   var time;
   final int qty;
-  DataId({required this.id, this.time, required this.qty});
+
+  DataId({this.id, this.time, this.qty});
 }

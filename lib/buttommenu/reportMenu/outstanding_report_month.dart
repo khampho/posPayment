@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class OutStandingReportOfMonth extends StatefulWidget {
-  const OutStandingReportOfMonth({Key? key}) : super(key: key);
+  const OutStandingReportOfMonth({Key key}) : super(key: key);
 
   @override
   _OutStandingReportOfMonthState createState() =>
@@ -104,7 +104,7 @@ class _OutStandingReportOfMonthState extends State<OutStandingReportOfMonth> {
 
 class DataId {
   int id;
-  String? time;
+  String time;
   int qty;
-  DataId({required this.id, this.time, required this.qty});
+  DataId({this.id, this.time, this.qty});
 }

@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pospayment/models/dailybillmodel.dart';
 import 'package:intl/intl.dart';
-import 'package:pospayment/models/printer.dart';
+import 'package:pospayment/models/dailybillmodel.dart';
+import 'package:pospayment/models/profile.dart';
 
 class BillDailyIncome extends StatefulWidget {
-  const BillDailyIncome({Key? key}) : super(key: key);
+  const BillDailyIncome({Key key}) : super(key: key);
 
   @override
   _BillDailyIncomeState createState() => _BillDailyIncomeState();
@@ -14,27 +14,23 @@ class BillDailyIncome extends StatefulWidget {
 
 class _BillDailyIncomeState extends State<BillDailyIncome> {
   get box => GetStorage();
-  var f =  NumberFormat('###,###,##0 ກີບ', "en_US");
+  var f = NumberFormat('###,###,##0 ກີບ', "en_US");
 
-  test(){
-    print(box.read('M_phone'));
-  }
   Future<DataModel> getbillData() async {
-    // String token = await getToken();
-    // dio.options.headers["Authorization"] = "Bearer $token";
+    String token = await getToken();
+    dio.options.headers["Authorization"] = "Bearer $token";
 
     Response response = await Dio().get('https://jsonkeeper.com/b/N1ZL');
 
-    ///print(response.data['datas']);
+    print(response.data['datas']);
 
     DataModel items = DataModel.fromJson(response.data);
-    //print(items);
+    print(items);
     return items;
   }
 
   @override
   Widget build(BuildContext context) {
-    test();
     return Scaffold(
       appBar: AppBar(
         title: const Text('ບິນເກັບເງິນມື້'),
@@ -48,7 +44,7 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
             onTap: () {
               setState(() {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const PrintBill();
+                  return;
                 }));
               });
             },
@@ -96,9 +92,9 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text('ວັນທີ : ' +
-                                          snapshot.data!.date.toString()),
+                                          snapshot.data.date.toString()),
                                       Text('ເລກທີ່ : ' +
-                                          snapshot.data!.billNo.toString()),
+                                          snapshot.data.billNo.toString()),
                                     ],
                                   ),
                                   Container(
@@ -130,7 +126,7 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                                   ListView.builder(
                                     scrollDirection: Axis.vertical,
                                     shrinkWrap: true,
-                                    itemCount: snapshot.data!.datas.length,
+                                    itemCount: snapshot.data.datas.length,
                                     itemBuilder: (_, index) => Table(
                                       border: TableBorder.all(
                                           color: Colors.grey, width: 0.2),
@@ -138,22 +134,21 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                                         TableRow(children: [
                                           Center(
                                             child: Text(
-                                            '${index + 1}',
+                                              '${index + 1}',
                                               style:
                                                   const TextStyle(fontSize: 15),
                                             ),
                                           ),
                                           Center(
                                               child: Text(
-                                            snapshot.data!.datas[index].list,
+                                            snapshot.data.datas[index].list,
                                             style:
                                                 const TextStyle(fontSize: 15),
                                           )),
                                           Center(
                                               child: Text(
-                                           
-                                                f.format(snapshot
-                                                    .data!.datas[index].price),
+                                            f.format(snapshot
+                                                .data.datas[index].price),
                                             style:
                                                 const TextStyle(fontSize: 15),
                                           ))
@@ -176,7 +171,9 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                                       height: 40,
                                       child: Center(
                                         child: Text(
-                                            'ລວມເງິນ : ' + f.format(int.parse(snapshot.data!.totalPrice)),
+                                            'ລວມເງິນ : ' +
+                                                f.format(int.parse(
+                                                    snapshot.data.totalPrice)),
                                             style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold)),
@@ -186,13 +183,7 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                                 ],
                               );
                             } else {
-                              return Center(
-                                child: TextButton(
-                                    onPressed: () {
-                                      getbillData();
-                                    },
-                                    child: const Text('pree')),
-                              );
+                              return const Text('ກະລຸນາລໍຖ້າ');
                               //return const Center(child: CircularProgressIndicator());
                             }
                           },
@@ -207,7 +198,8 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                         ),
                         Container(
                           padding: const EdgeInsets.only(bottom: 20, top: 40),
-                          child: Text('ຫ້ອງການຕະຫຼາດ : ' + box.read('M_phone').toString()),
+                          child: Text('ຫ້ອງການຕະຫຼາດ : ' +
+                              box.read('M_phone').toString()),
                         )
                       ],
                     ),

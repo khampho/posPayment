@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RePayment extends StatefulWidget {
-  const RePayment({Key? key}) : super(key: key);
+  const RePayment({Key key}) : super(key: key);
 
   @override
   _RePaymentState createState() => _RePaymentState();

@@ -8,7 +8,7 @@ import 'package:pospayment/buttommenu/reportMenu/repayment.dart';
 //body["data"][1][roomitems][0][service_items][price]
 
 class PaymentReport extends StatefulWidget {
-  const PaymentReport({Key? key}) : super(key: key);
+  const PaymentReport({Key key}) : super(key: key);
 
   @override
   _PaymentReportState createState() => _PaymentReportState();
@@ -46,94 +46,179 @@ class _PaymentReportState extends State<PaymentReport> {
                 height: 5,
               ),
               Card(
-                child: TextButton.icon(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return const DailyIncome();
-                      }),
-                    );
-                  },
-                  icon: Image.asset(
-                    'assets/images/price_icon.png',
-                    width: 70,
-                  ),
-                  label: const Text(
-                    'ລາຍຮັບປະຈຳວັນ                         ',
-                    style: TextStyle(fontSize: 20, color: Colors.green),
-                  ),
+                child: Column(
+                  children: <Widget>[
+                    InkWell(
+                      // splashColor: Colors.yellow,
+                      // highlightColor: Colors.blue,
+                      child: Column(
+                        children: <Widget>[
+                          GestureDetector(
+                            child: Row(children: [
+                              Container(
+                                  width: 70,
+                                  height: 50,
+                                  margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/images/price_icon.png',
+                                        width: 50,
+                                        height: 50,
+                                        fit: BoxFit.cover,
+                                      ))),
+                              Flexible(
+                                  child: Text('ລາຍຮັບປະຈຳວັນ',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.green))),
+                            ]),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return const DailyIncome();
+                            }),
+                          );
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
               Card(
-                //padding: EdgeInsets.only(top: 10,left: 15),
-                child: TextButton.icon(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return const MonthlyIncome();
-                      }),
-                    );
-                  },
-                  icon: Image.asset(
-                    'assets/images/price_icon.png',
-                    width: 70,
-                  ),
-                  label: const Text(
-                    'ລາຍຮັບປະຈຳເດືອນ                     ',
-                    style: TextStyle(fontSize: 20, color: Colors.green),
-                  ),
+                child: Column(
+                  children: <Widget>[
+                    InkWell(
+                      // splashColor: Colors.yellow,
+                      // highlightColor: Colors.blue,
+                      child: Column(
+                        children: <Widget>[
+                          GestureDetector(
+                            child: Row(children: [
+                              Container(
+                                  width: 70,
+                                  height: 50,
+                                  margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/images/price_icon.png',
+                                        width: 50,
+                                        height: 50,
+                                        fit: BoxFit.cover,
+                                      ))),
+                              Flexible(
+                                  child: Text('ລາຍຮັບປະຈຳເດືອນ',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.green))),
+                            ]),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return const MonthlyIncome();
+                            }),
+                          );
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
               Card(
-                //padding: EdgeInsets.only(top: 10,left: 15),
-                child: TextButton.icon(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return const OutStanding();
-                      }),
-                    );
-                  },
-                  icon: Image.asset(
-                    'assets/images/price_icon.png',
-                    width: 70,
-                  ),
-                  label: const Text(
-                    'ຖອກຊຳລະ                                  ',
-                    style: TextStyle(fontSize: 20, color: Colors.green),
-                  ),
+                child: Column(
+                  children: <Widget>[
+                    InkWell(
+                      // splashColor: Colors.yellow,
+                      // highlightColor: Colors.blue,
+                      child: Column(
+                        children: <Widget>[
+                          GestureDetector(
+                            child: Row(children: [
+                              Container(
+                                  width: 70,
+                                  height: 50,
+                                  margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/images/price_icon.png',
+                                        width: 50,
+                                        height: 50,
+                                        fit: BoxFit.cover,
+                                      ))),
+                              Flexible(
+                                  child: Text('ຖອກຊຳລະ',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.green))),
+                            ]),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return const OutStanding();
+                            }),
+                          );
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
               Card(
-                //padding: EdgeInsets.only(top: 10,left: 15),
-                child: TextButton.icon(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return const RePayment();
-                      }),
-                    );
-                  },
-                  icon: Image.asset(
-                    'assets/images/price_icon.png',
-                    width: 70,
-                  ),
-                  label: const Text(
-                    'ຮ້ານຄ້າທີ່ຄ້າງຊຳລະ                       ',
-                    style: TextStyle(fontSize: 20, color: Colors.green),
-                  ),
+                child: Column(
+                  children: <Widget>[
+                    InkWell(
+                      // splashColor: Colors.yellow,
+                      // highlightColor: Colors.blue,
+                      child: Column(
+                        children: <Widget>[
+                          GestureDetector(
+                            child: Row(children: [
+                              Container(
+                                  width: 70,
+                                  height: 50,
+                                  margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/images/price_icon.png',
+                                        width: 50,
+                                        height: 50,
+                                        fit: BoxFit.cover,
+                                      ))),
+                              Flexible(
+                                  child: Text('ຮ້ານຄ້າທີ່ຄ້າງຊຳລະ',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.green))),
+                            ]),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return const RePayment();
+                            }),
+                          );
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(

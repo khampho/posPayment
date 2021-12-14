@@ -35,7 +35,7 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
       appBar: AppBar(
         title: const Text('ບິນເກັບເງິນມື້'),
         //centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.tealAccent.shade400,
         actions: [
           InkWell(
             splashColor: Colors.yellow,
@@ -77,10 +77,11 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                           ],
                         ),
                         const Text(
-                          'ໃບບິນເກັບເງິນມື້',
+                          'ໃບບິນ',
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold),
                         ),
+                        SizedBox(height: 20,),
                         FutureBuilder<DataModel>(
                           future: getbillData(),
                           builder: (context, snapshot) {
@@ -210,7 +211,7 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
           ),
         ),
       ),
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.tealAccent.shade400,
     );
   }
 }

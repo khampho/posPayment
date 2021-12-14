@@ -40,7 +40,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
         width: double.infinity,
         height: 1000,
         child: Card(
-          color: Colors.white70,
+          // color: Colors.tealAccent.shade200,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           child: SingleChildScrollView(
@@ -51,6 +51,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                 ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100.0),
+
                   child: Image.network(
                     'http://139.59.225.42/v1/uploads/market/' +
                         GetStorage().read('M_logo'),
@@ -63,6 +64,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                   key: _formKey,
                   child: Container(
                     width: 300,
+                    height: 110,
                     padding: const EdgeInsets.only(top: 30, bottom: 30),
                     child: TextFormField(
                         validator: (value) {
@@ -96,13 +98,14 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           labelText: 'ລະຫັດຮ້ານ',
-                          labelStyle: const TextStyle(color: Colors.green),
+                          labelStyle: const TextStyle(color: Colors.green,fontSize: 15),
                           prefixIcon: const Icon(
                             Icons.vpn_key_sharp,
                             color: Colors.green,
-                            size: 30.0,
+                            size: 25.0,
                           ),
-                        )),
+                        )
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -115,10 +118,10 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                           }));
                         },
                         style: TextButton.styleFrom(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(12.0),
                             primary: Colors.white,
                             backgroundColor: Colors.green,
-                            textStyle: const TextStyle(fontSize: 20),
+                            textStyle: const TextStyle(fontSize: 18),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30.0),
                               side: const BorderSide(color: Colors.green),
@@ -155,16 +158,17 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
           elevation: 0.0,
           child: const Icon(
             Icons.qr_code_scanner_outlined,
-            color: Colors.green,
+            color: Colors.white,
             size: 50,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.tealAccent.shade400,
           //const Color(0xFFA6F338),
           onPressed: () {
             // Navigator.of(context).push(MaterialPageRoute(
             //   builder: (context) => const QRViewExample(),
             // ));
           }),
+      backgroundColor: Colors.tealAccent.shade400,
     );
   }
 }

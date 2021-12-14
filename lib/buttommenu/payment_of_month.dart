@@ -11,6 +11,7 @@ class PaymentOfMonth extends StatefulWidget {
 
 class _PaymentOfMonthState extends State<PaymentOfMonth> {
   String zone = 'Zone A';
+  var color = '';
 
   ///
   final List<Customer> custS = [
@@ -164,6 +165,11 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
   }
 
   Widget _builItem(int index) {
+    if (filtercustS[index].status == 0 ){
+        color = Colors.red as String;
+    }else{
+      color = Colors.green as String;
+    }
     return Card(
       child: Row(
         children: [
@@ -182,11 +188,11 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
             //icon: const Icon(Icons.view_comfy_outlined,color: Colors.green,),
 
             label: Text(filtercustS[index].name,
-                style: const TextStyle(fontSize: 18, color: Colors.green)),
+                style: const TextStyle(fontSize: 18, color: color)),
             icon: const Icon(
               Icons.arrow_right,
               size: 40,
-              color:Colors.green,
+              color: Colors.green,
             ),
           ),
         ],

@@ -194,15 +194,15 @@ class _ProfileState extends State<Profile> {
                   height: 50,
                 ),
                 Container(
-                  width: 300,
+                  width: 250,
                   padding: const EdgeInsets.only(top: 30),
                   child: ElevatedButton(
                     style: TextButton.styleFrom(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(10.0),
                         primary: Colors.white,
                         backgroundColor: Colors.red,
                         textStyle: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                         ),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0),
@@ -241,6 +241,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
       ),
+      backgroundColor: Colors.tealAccent.shade400,
     );
   }
 }

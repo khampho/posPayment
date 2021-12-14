@@ -43,7 +43,7 @@ class _DailyIncomeState extends State<DailyIncome> {
       appBar: AppBar(
         title: const Text('ລາຍຮັບປະຈຳວັນ'),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.tealAccent.shade400,
       ),
       body: Container(
         padding: const EdgeInsets.all(10),
@@ -138,7 +138,7 @@ class _DailyIncomeState extends State<DailyIncome> {
           ],
         ),
       ),
-      // backgroundColor: Colors.white38,
+     //  backgroundColor: Colors.tealAccent.shade400,
     );
   }
 }

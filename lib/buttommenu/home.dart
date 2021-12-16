@@ -3,22 +3,38 @@ import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/Screens/profile.dart';
 import 'package:pospayment/Screens/qr_scan.dart';
 import 'package:pospayment/bills/dailyIncome.dart.dart';
+import 'package:pospayment/models/memodel.dart';
+
 
 class PaymentOfDay extends StatefulWidget {
   const PaymentOfDay({Key key}) : super(key: key);
   @override
   _PaymentOfDayState createState() => _PaymentOfDayState();
 }
+  dynamic data = GetStorage().read('user');
 
+Future<Memodel>getme() async {
+  Memodel items =  Memodel.fromJson(data);
+  return items;
+}
 class _PaymentOfDayState extends State<PaymentOfDay> {
   final _formKey = GlobalKey<FormState>();
   final _roomId = TextEditingController();
   double sideLength = 50;
   @override
   Widget build(BuildContext context) {
+    getme();
     return Scaffold(
       appBar: AppBar(
-        title: Text(GetStorage().read('M_name')),
+        title:  FutureBuilder<Memodel>(
+        future: getme(),
+        builder: (_, snapshot)  {
+          if (snapshot.hasData) {
+            return Text(snapshot.data.marketId.name);
+          }else{
+            return const Text('waitting');
+          }
+        }),
         backgroundColor: Colors.tealAccent.shade400,
         automaticallyImplyLeading: false,
         actions: [
@@ -29,7 +45,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
             onTap: () {
               setState(() {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const Profile();
+                  return  Profile();
                 }));
               });
             },
@@ -49,17 +65,25 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                 const SizedBox(
                   height: 30.0,
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100.0),
+                FutureBuilder<Memodel>(
+                future: getme(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(100.0),
+                      child: Image.network(
+                        'http://139.59.225.42/v1/uploads/market/' +
+                            snapshot.data.marketId.logo,
+                        height: 150.0,
+                        width: 150.0,
+                        fit: BoxFit.fill,
+                      ),
+                    );
+                  }else{
+                    return const Text('waitting');
+                  }
 
-                  child: Image.network(
-                    'http://139.59.225.42/v1/uploads/market/' +
-                        GetStorage().read('M_logo'),
-                    height: 150.0,
-                    width: 150.0,
-                    fit: BoxFit.fill,
-                  ),
-                ),
+                }),
                 Form(
                   key: _formKey,
                   child: Container(
@@ -100,9 +124,9 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                           labelText: 'ລະຫັດຮ້ານ',
                           labelStyle: const TextStyle(color: Colors.green,fontSize: 15),
                           prefixIcon: const Icon(
-                            Icons.vpn_key_sharp,
+                            Icons.vpn_key,
                             color: Colors.green,
-                            size: 25.0,
+                            size: 20.0,
                           ),
                         )
                     ),
@@ -164,11 +188,12 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
           backgroundColor: Colors.tealAccent.shade400,
           //const Color(0xFFA6F338),
           onPressed: () {
-            // Navigator.of(context).push(MaterialPageRoute(
-            //   builder: (context) => const QRViewExample(),
-            // ));
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const QRViewExample(),
+            ));
           }),
       backgroundColor: Colors.tealAccent.shade400,
     );
   }
 }
+

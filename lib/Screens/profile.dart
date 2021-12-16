@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/buttommenu/home.dart';
+import 'package:pospayment/buttommenu/homebuttommenu.dart';
 import 'package:pospayment/loginlogout/login.dart';
 import 'package:pospayment/loginlogout/logout.dart';
 
@@ -10,8 +11,8 @@ class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
 }
-
-get box => GetStorage();
+  get box => GetStorage();
+ dynamic data = GetStorage().read('user');
 
 class _ProfileState extends State<Profile> {
   @override
@@ -36,7 +37,7 @@ class _ProfileState extends State<Profile> {
                   width: 120,
                 ),
                 AutoSizeText(
-                  box.read('P_fname') + "  " + box.read('P_lname'),
+                  data['first_name'] + "  " + data['last_name'],
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18),
                   maxLines: 2,
@@ -61,7 +62,7 @@ class _ProfileState extends State<Profile> {
                       const Icon(
                         Icons.security,
                         color: Colors.grey,
-                        size: 30.0,
+                        size: 20.0,
                       ),
                       const Padding(
                         padding: EdgeInsets.fromLTRB(16.0, 0, 8, 16),
@@ -76,7 +77,7 @@ class _ProfileState extends State<Profile> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              box.read('P_id'),
+                              data['code'],
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
@@ -94,7 +95,7 @@ class _ProfileState extends State<Profile> {
                       const Icon(
                         Icons.phone,
                         color: Colors.grey,
-                        size: 30.0,
+                        size: 20.0,
                       ),
                       const Padding(
                         padding: EdgeInsets.fromLTRB(16.0, 0, 8, 16),
@@ -109,7 +110,7 @@ class _ProfileState extends State<Profile> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              box.read('p_mobile'),
+                              data['mobile'],
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
@@ -127,7 +128,7 @@ class _ProfileState extends State<Profile> {
                       const Icon(
                         Icons.commute_outlined,
                         color: Colors.grey,
-                        size: 30.0,
+                        size: 20.0,
                       ),
                       const Padding(
                         padding: EdgeInsets.fromLTRB(16.0, 0, 8, 16),
@@ -142,7 +143,7 @@ class _ProfileState extends State<Profile> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              box.read('P_role'),
+                             data['role_id']['name_la'],
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
@@ -160,7 +161,7 @@ class _ProfileState extends State<Profile> {
                       const Icon(
                         Icons.map,
                         color: Colors.grey,
-                        size: 30.0,
+                        size: 20.0,
                       ),
                       const Padding(
                         padding: EdgeInsets.fromLTRB(16.0, 0, 8, 16),
@@ -177,7 +178,7 @@ class _ProfileState extends State<Profile> {
                             SizedBox(
                               width: 170,
                               child: AutoSizeText(
-                                box.read('P_address'),
+                                data['address'],
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 16),
                                 maxLines: 2,
@@ -210,19 +211,17 @@ class _ProfileState extends State<Profile> {
                                 const BorderSide(color: Colors.orangeAccent))),
                     onPressed: () async {
                       await removeToken();
-                      if (box.hasData('token') == false) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Login(
-                                    title: 'login',
-                                  )),
-                        );
-                      } else {
+                      if (box.hasData('token')) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const PaymentOfDay()));
+                                builder: (context) => const HomeMenu()));
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Login()),
+                        );
                       }
                     },
                     child: const Text('ອອກຈາກລະບົບ'),
@@ -231,7 +230,7 @@ class _ProfileState extends State<Profile> {
                 Container(
                   padding: const EdgeInsets.only(top: 70, bottom: 20),
                   child: Align(
-                    child: Text(box.read('M_name'),
+                    child: Text(data['market_id']['name'],
                         style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
                   ),

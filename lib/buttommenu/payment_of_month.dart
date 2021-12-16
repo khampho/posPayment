@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pospayment/Screens/profile.dart';
+import 'package:pospayment/models/memodel.dart';
+
+import 'home.dart';
 
 class PaymentOfMonth extends StatefulWidget {
   const PaymentOfMonth({Key key}) : super(key: key);
@@ -40,7 +43,15 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(box.read('M_name')),
+        title: FutureBuilder<Memodel>(
+        future: getme(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Text(snapshot.data.marketId.name);
+          }else{
+            return const Text('waitting');
+          }
+        }),
         backgroundColor: Colors.green,
         automaticallyImplyLeading: false,
         actions: [
@@ -165,11 +176,6 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
   }
 
   Widget _builItem(int index) {
-    if (filtercustS[index].status == 0 ){
-        color = Colors.red as String;
-    }else{
-      color = Colors.green as String;
-    }
     return Card(
       child: Row(
         children: [
@@ -188,7 +194,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
             //icon: const Icon(Icons.view_comfy_outlined,color: Colors.green,),
 
             label: Text(filtercustS[index].name,
-                style: const TextStyle(fontSize: 18, color: color)),
+                style:  TextStyle(fontSize: 18, color: filtercustS[index].status == 0 ? Colors.red : Colors.green )),
             icon: const Icon(
               Icons.arrow_right,
               size: 40,

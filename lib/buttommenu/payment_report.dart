@@ -4,6 +4,9 @@ import 'package:pospayment/buttommenu/reportMenu/daily_income.dart';
 import 'package:pospayment/buttommenu/reportMenu/monthly_income.dart';
 import 'package:pospayment/buttommenu/reportMenu/outstanding.dart';
 import 'package:pospayment/buttommenu/reportMenu/repayment.dart';
+import 'package:pospayment/models/memodel.dart';
+
+import 'home.dart';
 
 //body["data"][1][roomitems][0][service_items][price]
 
@@ -19,7 +22,15 @@ class _PaymentReportState extends State<PaymentReport> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(box.read('M_name')),
+        title: FutureBuilder<Memodel>(
+            future: getme(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data.marketId.name);
+              }else{
+                return const Text('waitting');
+              }
+            }),
         backgroundColor: Colors.green,
         automaticallyImplyLeading: false,
         actions: [

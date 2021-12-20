@@ -41,6 +41,7 @@ profile() async {
   await boxx.write('user', data);
 
 }
+
 // class _Profile {
 //   String id = "";
 //   String fname = "";

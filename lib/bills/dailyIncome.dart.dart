@@ -22,10 +22,10 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
 
     Response response = await Dio().get('https://jsonkeeper.com/b/N1ZL');
 
-    print(response.data['datas']);
+    //print(response.data['datas']);
 
     DataModel items = DataModel.fromJson(response.data);
-    print(items);
+   // print(items);
     return items;
   }
 

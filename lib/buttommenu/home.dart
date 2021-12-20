@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/Screens/profile.dart';
 import 'package:pospayment/Screens/qr_scan.dart';
 import 'package:pospayment/bills/dailyIncome.dart.dart';
+import 'package:pospayment/models/callgetme.dart';
 import 'package:pospayment/models/memodel.dart';
-
 
 class PaymentOfDay extends StatefulWidget {
   const PaymentOfDay({Key key}) : super(key: key);
   @override
   _PaymentOfDayState createState() => _PaymentOfDayState();
-}
-  dynamic data = GetStorage().read('user');
-
-Future<Memodel>getme() async {
-  Memodel items =  Memodel.fromJson(data);
-  return items;
 }
 class _PaymentOfDayState extends State<PaymentOfDay> {
   final _formKey = GlobalKey<FormState>();
@@ -23,7 +16,6 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
   double sideLength = 50;
   @override
   Widget build(BuildContext context) {
-    getme();
     return Scaffold(
       appBar: AppBar(
         title:  FutureBuilder<Memodel>(

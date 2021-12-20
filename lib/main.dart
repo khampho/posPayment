@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/routes/pages.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  await GetStorage.init();
+  runApp( MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -15,6 +17,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterilRoutes();
+    return  MaterilRoutes();
   }
 }

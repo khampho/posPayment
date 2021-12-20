@@ -11,15 +11,10 @@ class MaterilRoutes extends StatefulWidget {
 }
 
 class _MaterilRoutesState extends State<MaterilRoutes> {
-  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: box.hasData('token') ? "/HomeScreen" : "/",
-      routes: {
-        '/': (BuildContext context) => const Login(),
-        '/HomeScreen': (BuildContext context) => const HomeMenu(),
-      },
+      home:  GetStorage().hasData('token') ? HomeMenu():Login(),
     );
   }
 }

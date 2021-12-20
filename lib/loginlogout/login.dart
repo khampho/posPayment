@@ -5,9 +5,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/apiurl/api.dart';
 import 'package:pospayment/models/profile.dart';
 import 'package:pospayment/routes/pages.dart';
+import 'logout.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key, String title}) : super();
+  const Login({Key key}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();
@@ -41,6 +42,7 @@ class _LoginState extends State<Login> {
       client.close();
     }
   }
+
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -143,13 +145,31 @@ class _LoginState extends State<Login> {
                                               side: const BorderSide(
                                                   color: Colors.lightGreen))),
                                       onPressed: () async {
-                                        await createLoginModel();
                                         if (_formKey.currentState.validate()) {
-                                          await profile();
-                                          Navigator.push(context,
-                                              MaterialPageRoute(builder: (BuildContext context) {
-                                                return  MaterilRoutes();
-                                              }));
+                                          await createLoginModel();
+                                          if(box.hasData('token')){
+                                            await profile();
+                                            if(box.hasData('user')) {
+                                             dynamic role = box.read('user');
+                                              if(role['role_id']['role'] == 3){
+                                               // print(role['role_id']['role']);
+                                                setState(() {
+                                                  Navigator.push(context,
+                                                      MaterialPageRoute(builder: (
+                                                          BuildContext context) {
+                                                        return MaterilRoutes();
+                                                      }));
+                                                });
+
+                                              }else{
+                                               await removeToken();
+                                               //print('role != 3');
+                                               Login();
+                                              }
+
+                                            }
+                                          }
+
                                         }
                                       },
                                       child: const Text('ເຂົ້າສູ່ລະບົບ'),
@@ -165,13 +185,6 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              //  Align(
-              //   alignment: Alignment.bottomCenter,
-              //   child: Text(
-              //     token.isEmpty ? 'null': token ,
-              //     style: TextStyle(fontSize: 10),
-              //   ),
-              // )
             ])
         ),
         backgroundColor: Colors.tealAccent.shade400,

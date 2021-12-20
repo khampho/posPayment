@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pospayment/Screens/qr_scan.dart';
 import 'package:pospayment/buttommenu/payment_of_month.dart';
 import 'package:pospayment/buttommenu/payment_report.dart';
 import 'home.dart';

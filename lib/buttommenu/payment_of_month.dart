@@ -13,9 +13,6 @@ class PaymentOfMonth extends StatefulWidget {
 
 class _PaymentOfMonthState extends State<PaymentOfMonth> {
   String zone = 'Zone A';
-  var color = '';
-
-  ///
   final List<Customer> custS = [
     Customer(id: 1, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone A',status: 1),
     Customer(id: 2, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone A',status: 1),

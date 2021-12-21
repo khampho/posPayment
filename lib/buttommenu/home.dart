@@ -181,7 +181,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
           //const Color(0xFFA6F338),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const QRViewExample(),
+              builder: (context) => const QrScanner(),
             ));
           }),
       backgroundColor: Colors.tealAccent.shade400,

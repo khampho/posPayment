@@ -1,25 +1,24 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:pospayment/buttommenu/homebuttommenu.dart';
+import 'package:pospayment/buttommenu/home.dart';
 import 'package:pospayment/loginlogout/login.dart';
 import 'package:pospayment/loginlogout/logout.dart';
 import 'package:pospayment/models/callgetme.dart';
-import 'package:pospayment/models/memodel.dart';
+import 'package:get/get.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key key}) : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
 }
- dynamic data = GetStorage().read('user');
 
 class _ProfileState extends State<Profile> {
+  CounterController controller = Get.put(CounterController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ຂໍ້ມູນຜູ້ໃຊ້'),
+        title: Obx(()=> Text(controller.users.value.marketId.name)),
         backgroundColor: Colors.tealAccent.shade400,
       ),
       body: SingleChildScrollView(
@@ -29,22 +28,19 @@ class _ProfileState extends State<Profile> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(29),
             ),
-            child: FutureBuilder<Memodel>(
-              future: getme(),
-              builder: (_,snapshot){
-                if(snapshot.hasData){
-                  return Column(
+            child:  Column(
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Image.asset(
                         'assets/images/user_icon.png',
                         width: 120,
                       ),
-                      AutoSizeText(
-                        snapshot.data.firstName + "  " + snapshot.data.lastName,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                        maxLines: 2,
+                      Obx(()=>  AutoSizeText(
+                                  controller.users.value.firstName + "  " + controller.users.value.lastName.toString(),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold, fontSize: 18),
+                                  maxLines: 2,
+                                )
                       ),
                       const SizedBox(
                         height: 40.0,
@@ -80,10 +76,11 @@ class _ProfileState extends State<Profile> {
                               padding: const EdgeInsets.fromLTRB(10.0, 0, 16, 16),
                               child: Column(
                                 children: <Widget>[
-                                  Text(
-                                    snapshot.data.code,
+                                  Obx(()=> Text(
+                                    controller.users.value.code.toString(),
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold, fontSize: 16),
+                                  ),
                                   ),
                                 ],
                               ),
@@ -113,10 +110,11 @@ class _ProfileState extends State<Profile> {
                               padding: const EdgeInsets.fromLTRB(20.0, 0, 16, 16),
                               child: Column(
                                 children: <Widget>[
-                                  Text(
-                                    snapshot.data.mobile,
+                                  Obx(()=> Text(
+                                    controller.users.value.mobile.toString(),
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold, fontSize: 16),
+                                  ),
                                   ),
                                 ],
                               ),
@@ -146,10 +144,11 @@ class _ProfileState extends State<Profile> {
                               padding: const EdgeInsets.fromLTRB(0.0, 0, 16, 16),
                               child: Column(
                                 children: <Widget>[
-                                  Text(
-                                    snapshot.data.roleId.nameLa,
+                                  Obx(()=> Text(
+                                    controller.users.value.roleId.nameLa.toString(),
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold, fontSize: 16),
+                                  ),
                                   ),
                                 ],
                               ),
@@ -181,13 +180,14 @@ class _ProfileState extends State<Profile> {
                                 children: <Widget>[
                                   SizedBox(
                                     width: 170,
-                                    child: AutoSizeText(
-                                      snapshot.data.address,
+                                    child:Obx(()=> AutoSizeText(
+                                      controller.users.value.address.toString(),
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold, fontSize: 16),
                                       maxLines: 2,
                                     ),
                                   )
+                                  ),
                                   //Text( box.read('P_address'),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
                                 ],
                               ),
@@ -219,7 +219,7 @@ class _ProfileState extends State<Profile> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const HomeMenu()));
+                                      builder: (context) => const PaymentOfDay()));
                             } else {
                               Navigator.push(
                                 context,
@@ -234,22 +234,18 @@ class _ProfileState extends State<Profile> {
                       Container(
                         padding: const EdgeInsets.only(top: 70, bottom: 20),
                         child: Align(
-                          child: Text(snapshot.data.marketId.name,
+                          child:Obx(()=> Text(controller.users.value.marketId.name.toString(),
                               style: const TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold)),
                         ),
+                        )
                       )
                     ],
-                  );
-                }else{
-                  return const Text('waitting');
-                }
-              }
+                  ),
             ),
           ),
         ),
-      ),
       backgroundColor: Colors.tealAccent.shade400,
-    );
+      );
   }
 }

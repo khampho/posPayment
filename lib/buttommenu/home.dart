@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pospayment/Screens/profile.dart';
-import 'package:pospayment/Screens/qr_scan.dart';
 import 'package:pospayment/bills/dailyIncome.dart.dart';
 import 'package:pospayment/models/callgetme.dart';
-import 'package:pospayment/models/memodel.dart';
+import 'package:get/get.dart';
+import 'package:pospayment/routes/pages.dart';
 
 class PaymentOfDay extends StatefulWidget {
   const PaymentOfDay({Key key}) : super(key: key);
@@ -13,37 +12,10 @@ class PaymentOfDay extends StatefulWidget {
 class _PaymentOfDayState extends State<PaymentOfDay> {
   final _formKey = GlobalKey<FormState>();
   final _roomId = TextEditingController();
-  double sideLength = 50;
+  CounterController controller = Get.put(CounterController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:  FutureBuilder<Memodel>(
-        future: getme(),
-        builder: (_, snapshot)  {
-          if (snapshot.hasData) {
-            return Text(snapshot.data.marketId.name);
-          }else{
-            return const Text('waitting');
-          }
-        }),
-        backgroundColor: Colors.tealAccent.shade400,
-        automaticallyImplyLeading: false,
-        actions: [
-          InkWell(
-            splashColor: Colors.yellow,
-            highlightColor: Colors.blue,
-            child: const Icon(Icons.person, color: Colors.white, size: 50),
-            onTap: () {
-              setState(() {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return  Profile();
-                }));
-              });
-            },
-          ),
-        ],
-      ),
       body: SizedBox(
         width: double.infinity,
         height: 1000,
@@ -57,25 +29,16 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                 const SizedBox(
                   height: 30.0,
                 ),
-                FutureBuilder<Memodel>(
-                future: getme(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ClipRRect(
+                ClipRRect(
                       borderRadius: BorderRadius.circular(100.0),
                       child: Image.network(
                         'http://139.59.225.42/v1/uploads/market/' +
-                            snapshot.data.marketId.logo,
+                            controller.users.value.marketId.logo,
                         height: 150.0,
                         width: 150.0,
                         fit: BoxFit.fill,
                       ),
-                    );
-                  }else{
-                    return const Text('waitting');
-                  }
-
-                }),
+                ),
                 Form(
                   key: _formKey,
                   child: Container(
@@ -181,7 +144,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
           //const Color(0xFFA6F338),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const QrScanner(),
+              builder: (context) => const MaterilRoutes(),
             ));
           }),
       backgroundColor: Colors.tealAccent.shade400,

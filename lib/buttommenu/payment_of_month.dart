@@ -34,37 +34,9 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
     super.initState();
     filtercustS = custS.where((i) => i.zone == zone).toList();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: FutureBuilder<Memodel>(
-        future: getme(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Text(snapshot.data.marketId.name);
-          }else{
-            return const Text('waitting');
-          }
-        }),
-        backgroundColor: Colors.green,
-        automaticallyImplyLeading: false,
-        actions: [
-          InkWell(
-            splashColor: Colors.yellow,
-            highlightColor: Colors.blue,
-            child: const Icon(Icons.person, color: Colors.white, size: 50),
-            onTap: () {
-              setState(() {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const Profile();
-                }));
-              });
-            },
-          ),
-        ],
-      ),
       body: Card(
         color: Colors.white60,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),

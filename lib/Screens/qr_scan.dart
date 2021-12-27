@@ -15,6 +15,8 @@ class _QrScannerState extends State<QrScanner> {
   QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
+  // In order to get hot reload to work we need to pause the camera if the platform
+  // is android, or resume the camera if the platform is iOS.
   @override
   void reassemble() {
     super.reassemble();
@@ -23,26 +25,30 @@ class _QrScannerState extends State<QrScanner> {
     }
     controller.resumeCamera();
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ສະແກນ QR Code'),
+        title: const Text('Qr ສະແກນ'),
         backgroundColor: Colors.tealAccent.shade400,
       ),
       body: Column(
         children: <Widget>[
           Expanded(flex: 6, child: _buildQrView(context)),
           Expanded(
-            flex:0,
+            flex: 1,
             child: FittedBox(
               fit: BoxFit.contain,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   if (result != null)
-
-                     Text('Data: ${result.code}')
+                    Text(
+                       ' Data: ${result.code}')
+                  else
+                    Text('Scan a code'),
 
                 ],
               ),
@@ -50,7 +56,6 @@ class _QrScannerState extends State<QrScanner> {
           )
         ],
       ),
-      backgroundColor: Colors.tealAccent.shade400,
     );
   }
   Widget _buildQrView(BuildContext context) {
@@ -58,7 +63,7 @@ class _QrScannerState extends State<QrScanner> {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
         MediaQuery.of(context).size.height < 400)
         ? 300.0
-        : 500.0;
+        : 600.0;
     // To ensure the Scanner view is properly sizes after rotation
     // we need to listen for Flutter SizeChanged notification and update controller
     return QRView(
@@ -67,7 +72,7 @@ class _QrScannerState extends State<QrScanner> {
       overlay: QrScannerOverlayShape(
           borderColor: Colors.green,
           borderRadius: 10,
-          borderLength: 30,
+          borderLength: 40,
           borderWidth: 10,
           cutOutSize: scanArea),
     );

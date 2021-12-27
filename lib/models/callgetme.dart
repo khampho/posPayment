@@ -1,9 +1,19 @@
 
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'memodel.dart';
-dynamic data = GetStorage().read('user');
-Future<Memodel>getme() async {
-  Memodel items = Memodel.fromJson(data);
-  //print(items.roleId.nameLa);
-  return items;
+
+
+class CounterController extends GetxController {
+   Rx<Memodel> users = Rx<Memodel>();
+   getData(){
+      var userdata =  GetStorage().read('user');
+      Memodel res = Memodel.fromJson(userdata);
+      users.value = res;
+      update();
+   }
+
 }
+
+
+

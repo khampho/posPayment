@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pospayment/Screens/profile.dart';
 import 'package:pospayment/buttommenu/reportMenu/daily_income.dart';
 import 'package:pospayment/buttommenu/reportMenu/monthly_income.dart';
 import 'package:pospayment/buttommenu/reportMenu/outstanding.dart';
 import 'package:pospayment/buttommenu/reportMenu/repayment.dart';
-import 'package:pospayment/models/memodel.dart';
-
-import 'package:pospayment/models/callgetme.dart';
 
 class PaymentReport extends StatefulWidget {
   const PaymentReport({Key key}) : super(key: key);
@@ -19,33 +15,6 @@ class _PaymentReportState extends State<PaymentReport> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: FutureBuilder<Memodel>(
-            future: getme(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Text(snapshot.data.marketId.name);
-              }else{
-                return const Text('waitting');
-              }
-            }),
-        backgroundColor: Colors.green,
-        automaticallyImplyLeading: false,
-        actions: [
-          InkWell(
-            splashColor: Colors.yellow,
-            highlightColor: Colors.blue,
-            child: const Icon(Icons.person, color: Colors.white, size: 50),
-            onTap: () {
-              setState(() {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const Profile();
-                }));
-              });
-            },
-          ),
-        ],
-      ),
       body: Card(
         color: Colors.white70,
         child: SingleChildScrollView(

@@ -15,7 +15,6 @@ class BillDailyIncome extends StatefulWidget {
 class _BillDailyIncomeState extends State<BillDailyIncome> {
   get box => GetStorage();
   var f = NumberFormat('###,###,##0 ກີບ', "en_US");
-
   Future<DataModel> getbillData() async {
     String token = await getToken();
     dio.options.headers["Authorization"] = "Bearer $token";

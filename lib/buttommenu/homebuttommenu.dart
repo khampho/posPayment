@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pospayment/buttommenu/payment_of_month.dart';
 import 'package:pospayment/buttommenu/payment_report.dart';
+import 'package:pospayment/models/callgetme.dart';
 import 'home.dart';
-
+import 'package:get/get.dart';
 class HomeMenu extends StatefulWidget {
   const HomeMenu({Key key}) : super(key: key);
 
@@ -12,10 +13,16 @@ class HomeMenu extends StatefulWidget {
 }
 
 class _HomeMenuState extends State<HomeMenu> {
+  CounterController controller = Get.put(CounterController());
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   controller.getData();
+  // }
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
+  static  TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static  List<Widget> _widgetOptions = <Widget>[
     PaymentOfDay(),
     PaymentOfMonth(),
     PaymentReport(),
@@ -24,12 +31,28 @@ class _HomeMenuState extends State<HomeMenu> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      controller.getData();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Obx(()=> Text(controller.users.value.marketId.name)),
+        backgroundColor: Colors.tealAccent.shade400,
+        automaticallyImplyLeading: false,
+        actions: [
+          InkWell(
+            splashColor: Colors.yellow,
+            highlightColor: Colors.blue,
+            child: const Icon(Icons.person, color: Colors.white, size: 50),
+            onTap: () {
+              Get.toNamed('/profile');
+            },
+          ),
+        ],
+      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

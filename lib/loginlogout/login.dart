@@ -3,10 +3,12 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/apiurl/api.dart';
+import 'package:pospayment/buttommenu/homebuttommenu.dart';
+import 'package:pospayment/models/memodel.dart';
 import 'package:pospayment/models/profile.dart';
 import 'package:pospayment/routes/pages.dart';
 import 'logout.dart';
-
+import 'package:get/get.dart';
 class Login extends StatefulWidget {
   const Login({Key key}) : super(key: key);
 
@@ -43,6 +45,30 @@ class _LoginState extends State<Login> {
     }
   }
 
+  onPressLogin() async{
+    if (_formKey.currentState.validate()) {
+
+      await createLoginModel();
+      if(box.hasData('token')){
+
+        await getProfile();
+        if(box.hasData('user')) {
+
+          Memodel role = box.read('user');
+          if(role.roleId.role == 3){
+            Get.toNamed('/home');
+
+          }else{
+            await removeToken();
+            //print('role != 3');
+            Login();
+          }
+
+        }
+      }
+
+    }
+  }
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -144,33 +170,9 @@ class _LoginState extends State<Login> {
                                               BorderRadius.circular(30.0),
                                               side: const BorderSide(
                                                   color: Colors.lightGreen))),
-                                      onPressed: () async {
-                                        if (_formKey.currentState.validate()) {
-                                          await createLoginModel();
-                                          if(box.hasData('token')){
-                                            await profile();
-                                            if(box.hasData('user')) {
-                                             dynamic role = box.read('user');
-                                              if(role['role_id']['role'] == 3){
-                                               // print(role['role_id']['role']);
-                                                setState(() {
-                                                  Navigator.push(context,
-                                                      MaterialPageRoute(builder: (
-                                                          BuildContext context) {
-                                                        return MaterilRoutes();
-                                                      }));
-                                                });
+                                      onPressed: ()  {
+                                        onPressLogin();
 
-                                              }else{
-                                               await removeToken();
-                                               //print('role != 3');
-                                               Login();
-                                              }
-
-                                            }
-                                          }
-
-                                        }
                                       },
                                       child: const Text('ເຂົ້າສູ່ລະບົບ'),
                                     ),

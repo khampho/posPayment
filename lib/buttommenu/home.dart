@@ -14,6 +14,11 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
   final _roomId = TextEditingController();
   CounterController controller = Get.put(CounterController());
   @override
+  void initState() {
+    super.initState();
+      controller.getData();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
@@ -29,16 +34,16 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                 const SizedBox(
                   height: 30.0,
                 ),
-                ClipRRect(
-                      borderRadius: BorderRadius.circular(100.0),
-                      child: Image.network(
-                        'http://139.59.225.42/v1/uploads/market/' +
-                            controller.users.value.marketId.logo,
-                        height: 150.0,
-                        width: 150.0,
-                        fit: BoxFit.fill,
-                      ),
-                ),
+                // ClipRRect(
+                //       borderRadius: BorderRadius.circular(100.0),
+                //       child: Image.network(
+                //         'http://139.59.225.42/v1/uploads/market/' +
+                //             controller.users.value.marketId.logo,
+                //         height: 150.0,
+                //         width: 150.0,
+                //         fit: BoxFit.fill,
+                //       ),
+                // ),
                 Form(
                   key: _formKey,
                   child: Container(

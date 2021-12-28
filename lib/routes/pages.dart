@@ -15,6 +15,7 @@ class _MaterilRoutesState extends State<MaterilRoutes> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(name: '/home', page: () => HomeMenu()),
         GetPage(name: '/login', page:() => Login()),

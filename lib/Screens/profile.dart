@@ -221,11 +221,7 @@ class _ProfileState extends State<Profile> {
                                   MaterialPageRoute(
                                       builder: (context) => const PaymentOfDay()));
                             } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Login()),
-                              );
+                              Get.toNamed('/login');
                             }
                           },
                           child: const Text('ອອກຈາກລະບົບ'),

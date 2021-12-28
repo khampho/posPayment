@@ -19,7 +19,6 @@ Future<Memodel> getProfile() async {
     Response response = await dio.get(apiBaseUrl + "/api/me");
     final data = response.data['data'];
     Memodel res =Memodel.fromJson(data);
-
     await boxx.write('user', res);
     //print(res.marketId.name);
     return res;

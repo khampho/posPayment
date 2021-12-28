@@ -56,11 +56,15 @@ class _LoginState extends State<Login> {
 
           Memodel role = box.read('user');
           if(role.roleId.role == 3){
-            Get.toNamed('/home');
+             print(role.roleId.role);
+           //Navigator.pushNamed(context, '/home');
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => HomeMenu(),
+              ));
 
           }else{
             await removeToken();
-            //print('role != 3');
+            print('role != 3');
             Login();
           }
 

@@ -14,15 +14,19 @@ class HomeMenu extends StatefulWidget {
 
 class _HomeMenuState extends State<HomeMenu> {
   CounterController controller = Get.put(CounterController());
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   controller.getData();
-  // }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.getData();
+    });
+
+  }
   int _selectedIndex = 0;
-  static  TextStyle optionStyle =
+    TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static  List<Widget> _widgetOptions = <Widget>[
+    List<Widget> _widgetOptions = <Widget>[
     PaymentOfDay(),
     PaymentOfMonth(),
     PaymentReport(),
@@ -31,7 +35,6 @@ class _HomeMenuState extends State<HomeMenu> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      controller.getData();
     });
   }
 
@@ -76,6 +79,7 @@ class _HomeMenuState extends State<HomeMenu> {
         selectedItemColor: Colors.green,
         onTap: _onItemTapped,
       ),
+      backgroundColor: Colors.tealAccent.shade400,
     );
   }
 }

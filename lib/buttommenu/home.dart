@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/bills/dailyIncome.dart.dart';
-import 'package:pospayment/models/callgetme.dart';
-import 'package:get/get.dart';
+import 'package:pospayment/models/memodel.dart';
 import 'package:pospayment/routes/pages.dart';
 
 class PaymentOfDay extends StatefulWidget {
@@ -12,12 +12,7 @@ class PaymentOfDay extends StatefulWidget {
 class _PaymentOfDayState extends State<PaymentOfDay> {
   final _formKey = GlobalKey<FormState>();
   final _roomId = TextEditingController();
-  CounterController controller = Get.put(CounterController());
-  @override
-  void initState() {
-    super.initState();
-      controller.getData();
-  }
+  Memodel logo = GetStorage().read('user');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +20,6 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
         width: double.infinity,
         height: 1000,
         child: Card(
-          // color: Colors.tealAccent.shade200,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           child: SingleChildScrollView(
@@ -34,16 +28,16 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                 const SizedBox(
                   height: 30.0,
                 ),
-                // ClipRRect(
-                //       borderRadius: BorderRadius.circular(100.0),
-                //       child: Image.network(
-                //         'http://139.59.225.42/v1/uploads/market/' +
-                //             controller.users.value.marketId.logo,
-                //         height: 150.0,
-                //         width: 150.0,
-                //         fit: BoxFit.fill,
-                //       ),
-                // ),
+                  ClipRRect(
+                        borderRadius: BorderRadius.circular(100.0),
+                        child: Image.network(
+                          'http://139.59.225.42/v1/uploads/market/' +
+                              logo.marketId.logo,
+                          height: 150.0,
+                          width: 150.0,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                 Form(
                   key: _formKey,
                   child: Container(

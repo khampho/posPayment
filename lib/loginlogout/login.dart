@@ -6,9 +6,8 @@ import 'package:pospayment/apiurl/api.dart';
 import 'package:pospayment/buttommenu/homebuttommenu.dart';
 import 'package:pospayment/models/memodel.dart';
 import 'package:pospayment/models/profile.dart';
-import 'package:pospayment/routes/pages.dart';
 import 'logout.dart';
-import 'package:get/get.dart';
+
 class Login extends StatefulWidget {
   const Login({Key key}) : super(key: key);
 
@@ -47,7 +46,7 @@ class _LoginState extends State<Login> {
 
   onPressLogin() async{
     if (_formKey.currentState.validate()) {
-
+    }else{
       await createLoginModel();
       if(box.hasData('token')){
 
@@ -56,11 +55,11 @@ class _LoginState extends State<Login> {
 
           Memodel role = box.read('user');
           if(role.roleId.role == 3){
-             print(role.roleId.role);
-           //Navigator.pushNamed(context, '/home');
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => HomeMenu(),
-              ));
+            print(role.roleId.role);
+            //Navigator.pushNamed(context, '/home');
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => HomeMenu(),
+            ));
 
           }else{
             await removeToken();
@@ -70,7 +69,6 @@ class _LoginState extends State<Login> {
 
         }
       }
-
     }
   }
   @override
@@ -113,9 +111,12 @@ class _LoginState extends State<Login> {
                                     padding: const EdgeInsets.only(top: 20),
                                     child: TextFormField(
                                         validator: (value) {
+                                          Memodel role = box.read('user');
                                           if (value == null || value.isEmpty) {
                                             return 'ກະລຸນາປ້ອນອີເມວ!';
-                                          } else {
+                                          } else if (box.hasData('token') != null || role.roleId.role != 3){
+                                            return  'ເມວ ຫຼື ລະຫັດບໍ່ຖືກຕ້ອງ!';
+                                          }else {
                                             return null;
                                           }
                                         },
@@ -138,9 +139,12 @@ class _LoginState extends State<Login> {
                                     width: 250,
                                     child: TextFormField(
                                         validator: (value) {
+                                          Memodel role = box.read('user');
                                           if (value == null || value.isEmpty) {
                                             return 'ກະລຸນາປ້ອນລະຫັດຜ່ານ!';
-                                          } else {
+                                          }else if (box.hasData('token') != null || role.roleId.role != 3){
+                                            return  'ເມວ ຫຼື ລະຫັດບໍ່ຖືກຕ້ອງ!';
+                                          }else {
                                             return null;
                                           }
                                         },

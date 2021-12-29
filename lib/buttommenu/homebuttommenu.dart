@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/buttommenu/payment_of_month.dart';
 import 'package:pospayment/buttommenu/payment_report.dart';
 import 'package:pospayment/models/callgetme.dart';
+import 'package:pospayment/models/memodel.dart';
 import 'home.dart';
 import 'package:get/get.dart';
 class HomeMenu extends StatefulWidget {
@@ -14,14 +16,10 @@ class HomeMenu extends StatefulWidget {
 
 class _HomeMenuState extends State<HomeMenu> {
   CounterController controller = Get.put(CounterController());
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.getData();
-    });
-
+    controller.getData();
   }
   int _selectedIndex = 0;
     TextStyle optionStyle =
@@ -38,11 +36,13 @@ class _HomeMenuState extends State<HomeMenu> {
     });
   }
 
+  Memodel marketname = GetStorage().read('user');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Obx(()=> Text(controller.users.value.marketId.name)),
+        title: Text(marketname.marketId.name),
         backgroundColor: Colors.tealAccent.shade400,
         automaticallyImplyLeading: false,
         actions: [

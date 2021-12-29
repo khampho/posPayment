@@ -17,8 +17,8 @@ Future<Memodel> getProfile() async {
     String token = await getToken();
     dio.options.headers["Authorization"] = "Bearer $token";
     Response response = await dio.get(apiBaseUrl + "/api/me");
-    final data = response.data['data'];
-    Memodel res =Memodel.fromJson(data);
+    var data = response.data['data'];
+    Memodel res = Memodel.fromJson(data);
     await boxx.write('user', res);
     //print(res.marketId.name);
     return res;

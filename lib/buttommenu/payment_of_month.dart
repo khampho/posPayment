@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pospayment/Screens/profile.dart';
-import 'package:pospayment/models/memodel.dart';
-import 'package:pospayment/models/callgetme.dart';
+import 'package:pospayment/controllers/monthlyPayment.dart';
+import 'package:get/get.dart';
+import 'package:pospayment/models/monthlyPaymentModel.dart';
 
 class PaymentOfMonth extends StatefulWidget {
   const PaymentOfMonth({Key key}) : super(key: key);
@@ -13,78 +13,65 @@ class PaymentOfMonth extends StatefulWidget {
 
 class _PaymentOfMonthState extends State<PaymentOfMonth> {
   String zone = 'Zone A';
-  final List<Customer> custS = [
-    Customer(id: 1, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone A',status: 1),
-    Customer(id: 2, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone A',status: 1),
-    Customer(id: 3, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone A',status: 0),
-    Customer(id: 4, name: "ຮ້ານ ນາງແສງຈັນ", zone: 'Zone A',status: 1),
-    Customer(id: 5, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone B',status: 1),
-    Customer(id: 6, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone B',status: 1),
-    Customer(id: 7, name: "ຮ້ານ ນາງວຽງແກ້ວ", zone: 'Zone B',status: 1),
-    Customer(id: 8, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone B',status: 0),
-    Customer(id: 9, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone C',status: 1),
-    Customer(id: 10, name: "ຮ້ານ ນາງແສງຈັນ", zone: 'Zone C',status: 0),
-    Customer(id: 11, name: "ຮ້ານ ນາງພູວັນ", zone: 'Zone D',status: 0),
-    Customer(id: 13, name: "ຮ້ານ ນາງສົມຈິດ", zone: 'Zone D',status: 1),
-  ];
 
-  List<Customer> filtercustS = [];
+  List<MonthlyPaymentModel> customers = [];
+  RoomNameController room = Get.put(RoomNameController());
   @override
   void initState() {
     super.initState();
-    filtercustS = custS.where((i) => i.zone == zone).toList();
+    customers = room.roomName.where((i) => i.zone == zone).toList();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Card(
-        color: Colors.white60,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        color: Colors.white70,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(bottom: 30, top: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    width: 220,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(color: Colors.grey, spreadRadius: 3),
-                      ],
-                    ),
+                    width: 300,
+                    height: 40,
+                    // decoration: BoxDecoration(
+                    //   borderRadius: BorderRadius.circular(10),
+                    //   color: Colors.white,
+                    //   boxShadow: const [
+                    //     BoxShadow(color: Colors.grey, spreadRadius: 3),
+                    //   ],
+                    // ),
                     child: const Center(
-                      child: Text('ເງິນລວມ : 350,000  ກີບ',
+                      child: Text('ເງິນລວມ : 350,000,000  ກີບ',
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.bold)),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 0, bottom: 20),
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.print,
-                          color: Colors.black,
-                          size: 60,
-                        )),
-                  ),
                 ],
               ),
             ),
-            Expanded(
-                child: Container(
+            Container(
+              margin: const EdgeInsetsDirectional.only(
+                  top: 1.0, start: 1.0, end: 1.0),
+              height: 1.0,
+              color: Colors.green,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: EdgeInsets.all(8.0),
               width: 300,
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              height: 45,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.white,
                 boxShadow: const [
-                  BoxShadow(color: Colors.lightGreen, spreadRadius: 3),
+                  BoxShadow(color: Colors.green, spreadRadius: 2),
                 ],
               ),
               child: DropdownButtonHideUnderline(
@@ -94,17 +81,18 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
                   Icons.arrow_downward,
                   color: Colors.green,
                 ),
-                iconSize: 24,
+                iconSize: 20,
                 elevation: 16,
                 style: const TextStyle(color: Colors.green),
                 underline: Container(
                   color: Colors.deepPurpleAccent,
                 ),
                 onChanged: (String newZone) {
-                  var rs = custS.where((i) => i.zone == newZone).toList();
+                  var rs =
+                      room.roomName.where((i) => i.zone == newZone).toList();
                   setState(() {
                     zone = newZone;
-                    filtercustS = rs;
+                    customers = rs;
                   });
                 },
                 items: <String>['Zone A', 'Zone B', 'Zone C', 'Zone D']
@@ -113,24 +101,21 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
                     value: value,
                     child: Text(
                       value,
-                      style: const TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   );
                 }).toList(),
               )),
-            )),
-            const SizedBox(
-              height: 3,
             ),
             SizedBox(
-              height: 473,
+              height: 403,
               width: 300,
               child: Container(
                 padding: const EdgeInsets.only(
                   top: 20,
                 ),
                 child: ListView.builder(
-                    itemCount: filtercustS.length,
+                    itemCount: room.roomName.length,
                     itemBuilder: (context, index) {
                       return _builItem(index);
                     }),
@@ -139,7 +124,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
           ],
         ),
       ),
-      // backgroundColor: Colors.green,
+      //backgroundColor: Colors.tealAccent.shade400,
     );
   }
 
@@ -150,7 +135,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
           TextButton.icon(
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
-              minimumSize: const Size(50, 30),
+              //minimumSize: const Size(40, 20),
               // alignment: Alignment.centerLeft,
             ),
             onPressed: () {
@@ -159,10 +144,12 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
               //   return const BillMarket();
               // }));
             },
-            //icon: const Icon(Icons.view_comfy_outlined,color: Colors.green,),
-
-            label: Text(filtercustS[index].name,
-                style:  TextStyle(fontSize: 18, color: filtercustS[index].status == 0 ? Colors.red : Colors.green )),
+            label: Text(customers[index].name,
+                style: TextStyle(
+                    fontSize: 16,
+                    color: customers[index].status == 0
+                        ? Colors.red
+                        : Colors.green)),
             icon: const Icon(
               Icons.arrow_right,
               size: 40,
@@ -173,12 +160,4 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
       ),
     );
   }
-}
-
-class Customer {
-  var id;
-  var name;
-  var zone;
-  int status;
-  Customer({this.id, this.name, this.zone,this.status});
 }

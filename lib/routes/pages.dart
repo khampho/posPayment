@@ -4,6 +4,7 @@ import 'package:pospayment/Screens/profile.dart';
 import 'package:pospayment/buttommenu/homebuttommenu.dart';
 import 'package:pospayment/loginlogout/login.dart';
 import 'package:get/get.dart';
+
 class MaterilRoutes extends StatefulWidget {
   const MaterilRoutes({Key key}) : super(key: key);
 
@@ -18,12 +19,10 @@ class _MaterilRoutesState extends State<MaterilRoutes> {
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(name: '/home', page: () => HomeMenu()),
-        GetPage(name: '/login', page:() => Login()),
+        GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/profile', page: () => Profile()),
-
       ],
-     initialRoute: GetStorage().hasData('token') ? '/home': '/login',
+      initialRoute: GetStorage().hasData('token') ? '/home' : '/login',
     );
   }
 }
-

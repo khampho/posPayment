@@ -50,46 +50,46 @@ class Memodel {
   DateTime updatedAt;
 
   factory Memodel.fromJson(Map<String, dynamic> json) => Memodel(
-    deposit: json["deposit"],
-    deletedAt: json["deleted_at"],
-    id: json["_id"],
-    code: json["code"],
-    gender: json["gender"],
-    firstName: json["first_name"],
-    lastName: json["last_name"],
-    mobile: json["mobile"],
-    note: json["note"],
-    address: json["address"],
-    email: json["email"],
-    marketId: MarketId.fromJson(json["market_id"]),
-    vehicleTypeId: EId.fromJson(json["vehicle_type_id"]),
-    roleId: EId.fromJson(json["role_id"]),
-    lastLogin: DateTime.parse(json["last_login"]),
-    v: json["__v"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-  );
+        deposit: json["deposit"],
+        deletedAt: json["deleted_at"],
+        id: json["_id"],
+        code: json["code"],
+        gender: json["gender"],
+        firstName: json["first_name"],
+        lastName: json["last_name"],
+        mobile: json["mobile"],
+        note: json["note"],
+        address: json["address"],
+        email: json["email"],
+        marketId: MarketId.fromJson(json["market_id"]),
+        vehicleTypeId: EId.fromJson(json["vehicle_type_id"]),
+        roleId: EId.fromJson(json["role_id"]),
+        lastLogin: DateTime.parse(json["last_login"]),
+        v: json["__v"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "deposit": deposit,
-    "deleted_at": deletedAt,
-    "_id": id,
-    "code": code,
-    "gender": gender,
-    "first_name": firstName,
-    "last_name": lastName,
-    "mobile": mobile,
-    "note": note,
-    "address": address,
-    "email": email,
-    "market_id": marketId.toJson(),
-    "vehicle_type_id": vehicleTypeId.toJson(),
-    "role_id": roleId.toJson(),
-    "last_login": lastLogin.toIso8601String(),
-    "__v": v,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
-  };
+        "deposit": deposit,
+        "deleted_at": deletedAt,
+        "_id": id,
+        "code": code,
+        "gender": gender,
+        "first_name": firstName,
+        "last_name": lastName,
+        "mobile": mobile,
+        "note": note,
+        "address": address,
+        "email": email,
+        "market_id": marketId.toJson(),
+        "vehicle_type_id": vehicleTypeId.toJson(),
+        "role_id": roleId.toJson(),
+        "last_login": lastLogin.toIso8601String(),
+        "__v": v,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+      };
 }
 
 class MarketId {
@@ -108,20 +108,20 @@ class MarketId {
   String telephone;
 
   factory MarketId.fromJson(Map<String, dynamic> json) => MarketId(
-    id: json["_id"],
-    code: json["code"],
-    name: json["name"],
-    logo: json["logo"],
-    telephone: json["telephone"],
-  );
+        id: json["_id"],
+        code: json["code"],
+        name: json["name"],
+        logo: json["logo"],
+        telephone: json["telephone"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "_id": id,
-    "code": code,
-    "name": name,
-    "logo": logo,
-    "telephone": telephone,
-  };
+        "_id": id,
+        "code": code,
+        "name": name,
+        "logo": logo,
+        "telephone": telephone,
+      };
 }
 
 class EId {
@@ -138,16 +138,16 @@ class EId {
   int role;
 
   factory EId.fromJson(Map<String, dynamic> json) => EId(
-    id: json["_id"],
-    nameEn: json["name_en"],
-    nameLa: json["name_la"],
-    role: json["role"] == null ? null : json["role"],
-  );
+        id: json["_id"],
+        nameEn: json["name_en"],
+        nameLa: json["name_la"],
+        role: json["role"] == null ? null : json["role"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "_id": id,
-    "name_en": nameEn,
-    "name_la": nameLa,
-    "role": role == null ? null : role,
-  };
+        "_id": id,
+        "name_en": nameEn,
+        "name_la": nameLa,
+        "role": role == null ? null : role,
+      };
 }

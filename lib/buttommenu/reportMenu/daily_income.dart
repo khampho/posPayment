@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:pospayment/apiurl/dailyIncomeReport.dart';
+import 'package:pospayment/models/dailyIncomeModel.dart';
 
 class DailyIncome extends StatefulWidget {
   const DailyIncome({Key key}) : super(key: key);
@@ -8,35 +11,7 @@ class DailyIncome extends StatefulWidget {
 }
 
 class _DailyIncomeState extends State<DailyIncome> {
-  final List<DataId> _Data = [
-    DataId(id: 111, time: '10:30', qty: 2000),
-    DataId(id: 112, time: '10:30', qty: 5000),
-    DataId(id: 113, time: '10:30', qty: 7000),
-    DataId(id: 114, time: '10:30', qty: 1200),
-    DataId(id: 111, time: '10:30', qty: 2000),
-    DataId(id: 112, time: '10:30', qty: 5000),
-    DataId(id: 113, time: '10:30', qty: 7000),
-    DataId(id: 114, time: '10:30', qty: 1000),
-    DataId(id: 111, time: '10:30', qty: 2000),
-    DataId(id: 112, time: '10:30', qty: 5000),
-    DataId(id: 113, time: '10:30', qty: 7000),
-    DataId(id: 114, time: '10:30', qty: 1000),
-    DataId(id: 111, time: '10:30', qty: 2000),
-    DataId(id: 112, time: '10:30', qty: 5000),
-    DataId(id: 113, time: '10:30', qty: 7000),
-    DataId(id: 114, time: '10:30', qty: 1200),
-    DataId(id: 111, time: '10:30', qty: 2000),
-    DataId(id: 112, time: '10:30', qty: 5000),
-    DataId(id: 113, time: '10:30', qty: 7000),
-    DataId(id: 114, time: '10:30', qty: 1000),
-    DataId(id: 113, time: '15:30', qty: 7000),
-    DataId(id: 114, time: '16:30', qty: 1000),
-    DataId(id: 111, time: '17:30', qty: 2000),
-    DataId(id: 112, time: '17:30', qty: 5000),
-    DataId(id: 113, time: '18:30', qty: 7000),
-    DataId(id: 118, time: '19:30', qty: 1000),
-  ];
-
+  var f = NumberFormat('###,###,##0', "en_US");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,104 +24,99 @@ class _DailyIncomeState extends State<DailyIncome> {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Container(
-              width: 300,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(color: Colors.grey, spreadRadius: 3),
-                ],
-              ),
-              child: const Center(
-                child: Text('ເງິນລວມ : 300,000  ກີບ',
-                    style:
-                        TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.only(top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: const [
-                        Text(
-                          'ເລກທີ',
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
+            FutureBuilder<DailyIncomeModel>(
+              future: getDailyIncome(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                    children: [
+                      //     Container(
+                      //       width: 300,
+                      //       height: 50,
+                      //       decoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.circular(10),
+                      //         color: Colors.white,
+                      //         boxShadow: const [
+                      //           BoxShadow(color: Colors.grey, spreadRadius: 3),
+                      //         ],
+                      //       ),
+                      //       child: const Center(
+                      //         child: Text('ລາຍຮັບມື້ນີ້ : 300,000  ກີບ',
+                      //             style:
+                      //                 TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+                      //       ),
+                      //     ),
+
+                      Container(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              children: const [
+                                Text(
+                                  'ເລກທີ',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: const [
+                                Text('ເວລາ',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ))
+                              ],
+                            ),
+                            Column(
+                              children: const [
+                                Text('ຈຳນວນ',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ))
+                              ],
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    Column(
-                      children: const [
-                        Text('ເວລາ',
-                            style: TextStyle(
-                              fontSize: 20,
-                            ))
-                      ],
-                    ),
-                    Column(
-                      children: const [
-                        Text('ຈຳນວນ',
-                            style: TextStyle(
-                              fontSize: 20,
-                            ))
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 570,
-              //padding: EdgeInsets.only(top: 20),
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: _Data.length,
-                itemBuilder: (context, int index) {
-                  return SingleChildScrollView(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          _Data[index].id.toString(),
-                          style: const TextStyle(
-                              fontSize: 15, color: Colors.black87),
+                      ),
+                      ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.data.length,
+                        itemBuilder: (_, index) => Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              snapshot.data.data[index].billNo,
+                              style: const TextStyle(
+                                  fontSize: 15, color: Colors.black87),
+                            ),
+                            Text(
+                              snapshot.data.data[index].time,
+                              style: const TextStyle(
+                                  fontSize: 15, color: Colors.black87),
+                            ),
+                            Text(
+                              f.format(snapshot.data.data[index].price),
+                              style: const TextStyle(
+                                  fontSize: 15, color: Colors.black87),
+                            )
+                          ],
                         ),
-                        Text(
-                          _Data[index].time,
-                          style: const TextStyle(
-                              fontSize: 15, color: Colors.black87),
-                        ),
-                        Text(
-                          _Data[index].qty.toString() + " ກີບ",
-                          style: const TextStyle(
-                              fontSize: 15, color: Colors.black87),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   );
-                },
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(),
-              ),
+                } else {
+                  return const Text('');
+                }
+              },
             ),
           ],
         ),
       ),
-     //  backgroundColor: Colors.tealAccent.shade400,
+      //  backgroundColor: Colors.tealAccent.shade400,
     );
   }
-}
-
-class DataId {
-  final int id;
-  var time;
-  final int qty;
-
-  DataId({this.id, this.time, this.qty});
 }

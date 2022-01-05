@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/buttommenu/payment_of_month.dart';
 import 'package:pospayment/buttommenu/payment_report.dart';
-import 'package:pospayment/models/callgetme.dart';
-import 'package:pospayment/models/memodel.dart';
+import 'package:pospayment/controllers/callgetme.dart';
+import 'package:pospayment/controllers/monthlyPayment.dart';
 import 'home.dart';
 import 'package:get/get.dart';
+
 class HomeMenu extends StatefulWidget {
   const HomeMenu({Key key}) : super(key: key);
 
@@ -16,15 +16,17 @@ class HomeMenu extends StatefulWidget {
 
 class _HomeMenuState extends State<HomeMenu> {
   CounterController controller = Get.put(CounterController());
+  RoomNameController room = Get.put(RoomNameController());
   @override
   void initState() {
     super.initState();
     controller.getData();
+    room.getRoomName();
   }
+
   int _selectedIndex = 0;
-    TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-    List<Widget> _widgetOptions = <Widget>[
+  TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  List<Widget> _widgetOptions = <Widget>[
     PaymentOfDay(),
     PaymentOfMonth(),
     PaymentReport(),
@@ -36,13 +38,13 @@ class _HomeMenuState extends State<HomeMenu> {
     });
   }
 
-  Memodel marketname = GetStorage().read('user');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(marketname.marketId.name),
+        title: Obx(() => Text(controller.users.value == null
+            ? 'null'
+            : controller.users.value.marketId.name)),
         backgroundColor: Colors.tealAccent.shade400,
         automaticallyImplyLeading: false,
         actions: [

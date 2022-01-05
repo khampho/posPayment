@@ -11,6 +11,7 @@ getToken() async {
   String token = await boxx.read('token');
   return token;
 }
+
 Future<Memodel> getProfile() async {
   var client = http.Client();
   try {

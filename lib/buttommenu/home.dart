@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/bills/dailyIncome.dart.dart';
-import 'package:pospayment/models/memodel.dart';
 import 'package:pospayment/routes/pages.dart';
 
 class PaymentOfDay extends StatefulWidget {
@@ -9,10 +7,10 @@ class PaymentOfDay extends StatefulWidget {
   @override
   _PaymentOfDayState createState() => _PaymentOfDayState();
 }
+
 class _PaymentOfDayState extends State<PaymentOfDay> {
   final _formKey = GlobalKey<FormState>();
   final _roomId = TextEditingController();
-  Memodel logo = GetStorage().read('user');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,16 +26,16 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                 const SizedBox(
                   height: 30.0,
                 ),
-                  ClipRRect(
-                        borderRadius: BorderRadius.circular(100.0),
-                        child: Image.network(
-                          'http://139.59.225.42/v1/uploads/market/' +
-                              logo.marketId.logo,
-                          height: 150.0,
-                          width: 150.0,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
+                // ClipRRect(
+                //       borderRadius: BorderRadius.circular(100.0),
+                //       child: Image.network(
+                //         'http://139.59.225.42/v1/uploads/market/' +
+                //             logo.marketId.logo,
+                //         height: 150.0,
+                //         width: 150.0,
+                //         fit: BoxFit.fill,
+                //       ),
+                //     ),
                 Form(
                   key: _formKey,
                   child: Container(
@@ -76,14 +74,14 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           labelText: 'ລະຫັດຮ້ານ',
-                          labelStyle: const TextStyle(color: Colors.green,fontSize: 15),
+                          labelStyle: const TextStyle(
+                              color: Colors.green, fontSize: 15),
                           prefixIcon: const Icon(
                             Icons.vpn_key,
                             color: Colors.green,
                             size: 20.0,
                           ),
-                        )
-                    ),
+                        )),
                   ),
                 ),
                 SizedBox(
@@ -150,4 +148,3 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
     );
   }
 }
-

@@ -1,9 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:pospayment/controllers/callgetme.dart';
 import 'package:pospayment/models/dailybillmodel.dart';
 import 'package:pospayment/models/profile.dart';
+import 'package:get/get.dart';
 
 class BillDailyIncome extends StatefulWidget {
   const BillDailyIncome({Key key}) : super(key: key);
@@ -18,16 +21,13 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
   Future<DataModel> getbillData() async {
     String token = await getToken();
     dio.options.headers["Authorization"] = "Bearer $token";
-
-    Response response = await Dio().get('https://jsonkeeper.com/b/N1ZL');
-
-    //print(response.data['datas']);
-
+    var response = await Dio().get('https://jsonkeeper.com/b/N1ZL');
     DataModel items = DataModel.fromJson(response.data);
-   // print(items);
+    print(response);
     return items;
   }
 
+  CounterController controller = Get.put(CounterController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,12 +67,14 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Image.network(
-                              'http://139.59.225.42/v1/uploads/market/' +
-                                  box.read('M_logo'),
-                              width: 90,
+                            Obx(() => Image.network(
+                                  'http://139.59.225.42/v1/uploads/market/' +
+                                      controller.users.value.marketId.logo,
+                                  width: 90,
+                                )),
+                            Obx(
+                              () => Text(controller.users.value.marketId.name),
                             ),
-                            Text(box.read('M_name')),
                           ],
                         ),
                         const Text(
@@ -80,7 +82,9 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         FutureBuilder<DataModel>(
                           future: getbillData(),
                           builder: (context, snapshot) {
@@ -194,12 +198,21 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                         ),
                         Container(
                           padding: const EdgeInsets.only(left: 150),
-                          child: Text(box.read('P_fname').toString()),
+                          child: Obx(
+                            () => AutoSizeText(
+                              controller.users.value.firstName +
+                                  ' ' +
+                                  controller.users.value.lastName,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w300, fontSize: 13),
+                              maxLines: 2,
+                            ),
+                          ),
                         ),
                         Container(
                           padding: const EdgeInsets.only(bottom: 20, top: 40),
-                          child: Text('ຫ້ອງການຕະຫຼາດ : ' +
-                              box.read('M_phone').toString()),
+                          child: Obx(
+                              () => Text(controller.users.value.marketId.name)),
                         )
                       ],
                     ),

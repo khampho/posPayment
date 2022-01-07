@@ -4,6 +4,7 @@ import 'package:pospayment/buttommenu/payment_of_month.dart';
 import 'package:pospayment/buttommenu/payment_report.dart';
 import 'package:pospayment/controllers/callgetme.dart';
 import 'package:pospayment/controllers/monthlyPayment.dart';
+import 'package:pospayment/controllers/paidStore.dart';
 import 'home.dart';
 import 'package:get/get.dart';
 
@@ -17,11 +18,13 @@ class HomeMenu extends StatefulWidget {
 class _HomeMenuState extends State<HomeMenu> {
   CounterController controller = Get.put(CounterController());
   RoomNameController room = Get.put(RoomNameController());
+  paidStoreController paidStores = Get.put(paidStoreController());
   @override
   void initState() {
     super.initState();
     controller.getData();
     room.getRoomName();
+    paidStores.paidStore();
   }
 
   int _selectedIndex = 0;
@@ -45,7 +48,7 @@ class _HomeMenuState extends State<HomeMenu> {
         title: Obx(() => Text(controller.users.value == null
             ? 'null'
             : controller.users.value.marketId.name)),
-        backgroundColor: Colors.tealAccent.shade400,
+        backgroundColor: Colors.teal,
         automaticallyImplyLeading: false,
         actions: [
           InkWell(
@@ -78,10 +81,10 @@ class _HomeMenuState extends State<HomeMenu> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.teal,
         onTap: _onItemTapped,
       ),
-      backgroundColor: Colors.tealAccent.shade400,
+      backgroundColor: Colors.teal,
     );
   }
 }

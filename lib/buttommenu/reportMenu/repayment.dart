@@ -64,7 +64,7 @@ class _RePaymentState extends State<RePayment> {
             const Padding(
               padding: EdgeInsets.only(right: 15),
               child: Icon(
-                Icons.cancel,
+                Icons.arrow_drop_down_sharp,
                 size: 50,
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pospayment/buttommenu/reportMenu/daily_income.dart';
-import 'package:pospayment/buttommenu/reportMenu/monthly_income.dart';
 import 'package:pospayment/buttommenu/reportMenu/outstanding.dart';
+import 'package:pospayment/buttommenu/reportMenu/paidStore.dart';
 import 'package:pospayment/buttommenu/reportMenu/repayment.dart';
 
 class PaymentReport extends StatefulWidget {
@@ -90,7 +90,7 @@ class _PaymentReportState extends State<PaymentReport> {
                                         fit: BoxFit.cover,
                                       ))),
                               Flexible(
-                                  child: Text('ລາຍຮັບປະຈຳເດືອນ',
+                                  child: Text('ປະຫວັດການຖອກຊຳລະ',
                                       style: TextStyle(
                                           fontSize: 18, color: Colors.green))),
                             ]),
@@ -102,7 +102,7 @@ class _PaymentReportState extends State<PaymentReport> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) {
-                              return const MonthlyIncome();
+                              return const OutStanding();
                             }),
                           );
                         });
@@ -134,7 +134,7 @@ class _PaymentReportState extends State<PaymentReport> {
                                         fit: BoxFit.cover,
                                       ))),
                               Flexible(
-                                  child: Text('ຖອກຊຳລະ',
+                                  child: Text('ຮ້ານທີ່ຊຳລະແລ້ວ',
                                       style: TextStyle(
                                           fontSize: 18, color: Colors.green))),
                             ]),
@@ -146,7 +146,7 @@ class _PaymentReportState extends State<PaymentReport> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) {
-                              return const OutStanding();
+                              return const paidStore();
                             }),
                           );
                         });
@@ -206,7 +206,7 @@ class _PaymentReportState extends State<PaymentReport> {
           ),
         ),
       ),
-      // backgroundColor: Colors.green,
+       backgroundColor: Colors.tealAccent.shade700,
     );
   }
 }

@@ -25,7 +25,7 @@ class _MonthlyIncomeState extends State<MonthlyIncome> {
     DataId(id: 112, time: '10:30', qty: 5000),
     DataId(id: 113, time: '10:30', qty: 7000),
     DataId(id: 114, time: '10:30', qty: 1200),
-    DataId(id: 111545, time: '10:30', qty: 2000),
+    DataId(id: 155, time: '10:30', qty: 2000),
     DataId(id: 112, time: '10:30', qty: 5000),
     DataId(id: 113, time: '10:30', qty: 7000),
     DataId(id: 114, time: '10:30', qty: 1000),
@@ -42,8 +42,8 @@ class _MonthlyIncomeState extends State<MonthlyIncome> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ລາຍຮັບປະຈຳເດືອນ'),
-        centerTitle: true,
-        backgroundColor: Colors.green,
+
+        backgroundColor: Colors.teal,
       ),
       body: Container(
         padding: const EdgeInsets.only(top: 20),
@@ -51,7 +51,7 @@ class _MonthlyIncomeState extends State<MonthlyIncome> {
           children: [
             Container(
               width: 324,
-              height: 50,
+              height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
@@ -69,61 +69,73 @@ class _MonthlyIncomeState extends State<MonthlyIncome> {
               height: 5,
             ),
             Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Text(
-                    'ເລກທີ',
-                    style: TextStyle(
-                      fontSize: 20,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    Text(
+                      'ເລກທີ',
+                      style: TextStyle(
+                        fontSize: 16,fontWeight: FontWeight.bold
+                      ),
                     ),
-                  ),
-                  Text('ເວລາ',
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  Text('ຈຳນວນ',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ))
-                ],
+                    Text('ເວລາ',
+                        style: TextStyle(
+                          fontSize: 16,fontWeight: FontWeight.bold
+                        )),
+                    Text('ຈຳນວນ',
+                        style: TextStyle(
+                          fontSize: 16,fontWeight: FontWeight.bold
+                        ))
+                  ],
+                ),
               ),
+            ),
+            Container(
+              margin: const EdgeInsetsDirectional.only(
+                  top: 1.0, start: 1.0, end: 1.0),
+              height: 0.7,
+              color: Colors.teal,
             ),
             SizedBox(
               height: 570,
               //padding: EdgeInsets.only(top: 20),
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: _Data.length,
-                itemBuilder: (context, int index) {
-                  return SingleChildScrollView(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          _Data[index].id.toString(),
-                          style: const TextStyle(
-                            fontSize: 15,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: _Data.length,
+                  itemBuilder: (context, int index) {
+                    return SingleChildScrollView(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            _Data[index].id.toString(),
+                            style: const TextStyle(
+                              fontSize: 15,
+                            ),
                           ),
-                        ),
-                        Text(
-                          _Data[index].time,
-                          style: const TextStyle(
-                            fontSize: 15,
+                          Text(
+                            _Data[index].time,
+                            style: const TextStyle(
+                              fontSize: 15,
+                            ),
                           ),
-                        ),
-                        Text(
-                          _Data[index].qty.toString() + " ກີບ",
-                          style: const TextStyle(
-                            fontSize: 15,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(),
+                          Text(
+                            _Data[index].qty.toString() + " ກີບ",
+                            style: const TextStyle(
+                              fontSize: 15,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const Divider(),
+                ),
               ),
             ),
           ],

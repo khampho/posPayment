@@ -17,9 +17,10 @@ class _OutStandingState extends State<OutStanding> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.teal,
           title: const Text('ລາຍງານການຖອກຊຳລະ'),
           bottom: const TabBar(
+            indicatorColor: Colors.lime,
             tabs: [
               Tab(
                   child: Text(

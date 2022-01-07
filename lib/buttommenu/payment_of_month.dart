@@ -26,7 +26,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Card(
-        color: Colors.white70,
+        color: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         child: Column(
           children: [
@@ -38,13 +38,6 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
                   Container(
                     width: 300,
                     height: 40,
-                    // decoration: BoxDecoration(
-                    //   borderRadius: BorderRadius.circular(10),
-                    //   color: Colors.white,
-                    //   boxShadow: const [
-                    //     BoxShadow(color: Colors.grey, spreadRadius: 3),
-                    //   ],
-                    // ),
                     child: const Center(
                       child: Text('ເງິນລວມ : 350,000,000  ກີບ',
                           style: TextStyle(
@@ -115,7 +108,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
                   top: 20,
                 ),
                 child: ListView.builder(
-                    itemCount: room.roomName.length,
+                    itemCount: customers.length,
                     itemBuilder: (context, index) {
                       return _builItem(index);
                     }),
@@ -124,12 +117,13 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
           ],
         ),
       ),
-      //backgroundColor: Colors.tealAccent.shade400,
+      backgroundColor: Colors.tealAccent.shade700,
     );
   }
 
   Widget _builItem(int index) {
     return Card(
+      color: Colors.white70,
       child: Row(
         children: [
           TextButton.icon(

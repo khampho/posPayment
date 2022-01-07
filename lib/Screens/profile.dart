@@ -17,7 +17,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       appBar: AppBar(
         title: Obx(() => Text(controller.users.value.marketId.name)),
-        backgroundColor: Colors.tealAccent.shade400,
+        backgroundColor: Colors.teal,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -242,7 +242,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
       ),
-      backgroundColor: Colors.tealAccent.shade400,
+      backgroundColor: Colors.tealAccent.shade700,
     );
   }
 }

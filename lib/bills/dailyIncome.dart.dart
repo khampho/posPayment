@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:intl/intl.dart';
 import 'package:pospayment/controllers/callgetme.dart';
+import 'package:pospayment/format/number.dart';
 import 'package:pospayment/models/dailybillmodel.dart';
 import 'package:pospayment/models/profile.dart';
 import 'package:get/get.dart';
@@ -17,7 +17,6 @@ class BillDailyIncome extends StatefulWidget {
 
 class _BillDailyIncomeState extends State<BillDailyIncome> {
   get box => GetStorage();
-  var f = NumberFormat('###,###,##0 ກີບ', "en_US");
   Future<DataModel> getbillData() async {
     String token = await getToken();
     dio.options.headers["Authorization"] = "Bearer $token";
@@ -212,7 +211,7 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                         Container(
                           padding: const EdgeInsets.only(bottom: 20, top: 40),
                           child: Obx(
-                              () => Text(controller.users.value.marketId.name)),
+                              () => Text("ຫ້ອງການຕະຫລາດ : " + controller.users.value.marketId.telephone)),
                         )
                       ],
                     ),

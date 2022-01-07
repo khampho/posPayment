@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pospayment/bills/dailyIncome.dart.dart';
-import 'package:pospayment/routes/pages.dart';
+import 'package:get/get.dart';
 
 class PaymentOfDay extends StatefulWidget {
   const PaymentOfDay({Key key}) : super(key: key);
@@ -140,11 +140,9 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
           backgroundColor: Colors.tealAccent.shade400,
           //const Color(0xFFA6F338),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const MaterilRoutes(),
-            ));
+           Get.toNamed('/qrScan');
           }),
-      backgroundColor: Colors.tealAccent.shade400,
+      backgroundColor: Colors.tealAccent.shade700,
     );
   }
 }

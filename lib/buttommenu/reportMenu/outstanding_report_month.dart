@@ -61,6 +61,12 @@ class _OutStandingReportOfMonthState extends State<OutStandingReportOfMonth> {
               ),
             ),
           ),
+          Container(
+            margin: const EdgeInsetsDirectional.only(
+                top: 1.0, start: 1.0, end: 1.0),
+            height: 0.5,
+            color: Colors.grey,
+          ),
           SizedBox(
             height: 560,
             width: 300,

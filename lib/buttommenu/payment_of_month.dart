@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pospayment/controllers/monthlyPayment.dart';
 import 'package:get/get.dart';
 import 'package:pospayment/models/monthlyPaymentModel.dart';
+import 'package:pospayment/format/number.dart';
 
 class PaymentOfMonth extends StatefulWidget {
   const PaymentOfMonth({Key key}) : super(key: key);
@@ -38,6 +39,13 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
                   Container(
                     width: 300,
                     height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(color: Colors.grey, spreadRadius: 1),
+                      ],
+                    ),
                     child: const Center(
                       child: Text('ເງິນລວມ : 350,000,000  ກີບ',
                           style: TextStyle(
@@ -122,36 +130,79 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
   }
 
   Widget _builItem(int index) {
-    return Card(
-      color: Colors.white70,
-      child: Row(
-        children: [
-          TextButton.icon(
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-              //minimumSize: const Size(40, 20),
-              // alignment: Alignment.centerLeft,
-            ),
-            onPressed: () {
-              print('ok');
-              // Navigator.push(context, MaterialPageRoute(builder: (context) {
-              //   return const BillMarket();
-              // }));
-            },
-            label: Text(customers[index].name,
-                style: TextStyle(
-                    fontSize: 16,
-                    color: customers[index].status == 0
-                        ? Colors.red
-                        : Colors.green)),
-            icon: const Icon(
-              Icons.read_more,
-              size: 30,
-              color: Colors.green,
+     return InkWell(
+      splashColor: Colors.yellow,
+       borderRadius: BorderRadius.circular(12),
+      //highlightColor: Colors.orangeAccent,
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: Card(
+          color: Colors.white70,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(customers[index].name,
+                    style: TextStyle(
+                      fontSize: 16,
+                    )),
+                Icon(
+                  Icons.print,
+                  size: 30,
+                  color: Colors.teal,
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
+      onTap: () {
+        return showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            //title:  Text(paidStores.paidStoreData[index].name),
+            content: Container(
+              height: 100.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('ຮ້ານ : '),
+                      Text(customers[index].name)
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('ຈຳນວນເງິນ : '),
+                      Text(f.format(customers[index].status))
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('ໂຊນ : '),
+                      Text(customers[index].zone)
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(color: Colors.teal),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

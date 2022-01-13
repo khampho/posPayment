@@ -38,8 +38,9 @@ class _paidStoreState extends State<paidStore> {
 
   Widget buildDat(int index) {
     return InkWell(
-      splashColor: Colors.yellow,
-      highlightColor: Colors.blue,
+      splashColor: Colors.teal,
+      //highlightColor: Colors.blue,
+      borderRadius: BorderRadius.circular(12),
       child: Padding(
         padding: const EdgeInsets.all(3.0),
         child: Card(

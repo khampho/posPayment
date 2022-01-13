@@ -121,14 +121,23 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                   height: 1.0,
                   color: Colors.green,
                 ),
-                const SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text(
-                    'ລາຍຮັບລວມມື້ນີ້ : ' + ' 220,000 ກີບ',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                Padding(
+                  padding: const EdgeInsets.only(top:18.0),
+                  child: Container(
+                    width: 300,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(color: Colors.grey, spreadRadius: 1),
+                      ],
+                    ),
+                    child: const Center(
+                      child: Text('ເງິນລວມ : 350,000,000  ກີບ',
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold)),
+                    ),
                   ),
                 ),
               ],

@@ -36,7 +36,7 @@ class _DailyIncomeState extends State<DailyIncome> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
                           boxShadow: const [
-                            BoxShadow(color: Colors.grey, spreadRadius: 3),
+                            BoxShadow(color: Colors.grey, spreadRadius: 1),
                           ],
                         ),
                         child: Center(

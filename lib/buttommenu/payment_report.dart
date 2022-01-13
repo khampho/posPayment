@@ -33,22 +33,26 @@ class _PaymentReportState extends State<PaymentReport> {
                         children: <Widget>[
                           GestureDetector(
                             child: Row(children: [
-                              Container(
-                                  width: 70,
-                                  height: 50,
-                                  margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/images/price_icon.png',
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.cover,
-                                      ))),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                    width: 40,
+                                    height: 30,
+                                    margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                                    child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/price_icon.png',
+                                          width: 30,
+                                          height: 30,
+                                          fit: BoxFit.cover,
+                                        ))),
+                              ),
                               Flexible(
                                   child: Text('ລາຍຮັບປະຈຳວັນ',
                                       style: TextStyle(
-                                          fontSize: 18, color: Colors.green))),
+                                          fontSize: 16, color: Colors.green))),
                             ]),
                           ),
                         ],
@@ -77,22 +81,26 @@ class _PaymentReportState extends State<PaymentReport> {
                         children: <Widget>[
                           GestureDetector(
                             child: Row(children: [
-                              Container(
-                                  width: 70,
-                                  height: 50,
-                                  margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/images/price_icon.png',
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.cover,
-                                      ))),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                    width: 40,
+                                    height: 30,
+                                    margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                                    child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/price_icon.png',
+                                          width: 30,
+                                          height: 30,
+                                          fit: BoxFit.cover,
+                                        ))),
+                              ),
                               Flexible(
                                   child: Text('ປະຫວັດການຖອກຊຳລະ',
                                       style: TextStyle(
-                                          fontSize: 18, color: Colors.green))),
+                                          fontSize: 16, color: Colors.green))),
                             ]),
                           ),
                         ],
@@ -121,22 +129,26 @@ class _PaymentReportState extends State<PaymentReport> {
                         children: <Widget>[
                           GestureDetector(
                             child: Row(children: [
-                              Container(
-                                  width: 70,
-                                  height: 50,
-                                  margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/images/price_icon.png',
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.cover,
-                                      ))),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                    width: 40,
+                                    height: 30,
+                                    margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                                    child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/price_icon.png',
+                                          width: 30,
+                                          height: 30,
+                                          fit: BoxFit.cover,
+                                        ))),
+                              ),
                               Flexible(
                                   child: Text('ຮ້ານທີ່ຊຳລະແລ້ວ',
                                       style: TextStyle(
-                                          fontSize: 18, color: Colors.green))),
+                                          fontSize: 16, color: Colors.green))),
                             ]),
                           ),
                         ],
@@ -165,22 +177,26 @@ class _PaymentReportState extends State<PaymentReport> {
                         children: <Widget>[
                           GestureDetector(
                             child: Row(children: [
-                              Container(
-                                  width: 70,
-                                  height: 50,
-                                  margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/images/price_icon.png',
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.cover,
-                                      ))),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                    width: 40,
+                                    height: 30,
+                                    margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                                    child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/price_icon.png',
+                                          width: 30,
+                                          height: 30,
+                                          fit: BoxFit.cover,
+                                        ))),
+                              ),
                               Flexible(
                                   child: Text('ຮ້ານຄ້າທີ່ຄ້າງຊຳລະ',
                                       style: TextStyle(
-                                          fontSize: 18, color: Colors.green))),
+                                          fontSize: 16, color: Colors.green))),
                             ]),
                           ),
                         ],
@@ -206,7 +222,7 @@ class _PaymentReportState extends State<PaymentReport> {
           ),
         ),
       ),
-       backgroundColor: Colors.tealAccent.shade700,
+      backgroundColor: Colors.tealAccent.shade700,
     );
   }
 }

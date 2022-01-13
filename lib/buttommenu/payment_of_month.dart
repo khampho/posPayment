@@ -71,7 +71,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
                   child: DropdownButton<String>(
                 value: zone,
                 icon: const Icon(
-                  Icons.arrow_downward,
+                  Icons.format_list_bulleted,
                   color: Colors.green,
                 ),
                 iconSize: 20,
@@ -133,7 +133,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
               // alignment: Alignment.centerLeft,
             ),
             onPressed: () {
-              //print(_customer[index].name);
+              print('ok');
               // Navigator.push(context, MaterialPageRoute(builder: (context) {
               //   return const BillMarket();
               // }));
@@ -145,8 +145,8 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
                         ? Colors.red
                         : Colors.green)),
             icon: const Icon(
-              Icons.arrow_right,
-              size: 40,
+              Icons.read_more,
+              size: 30,
               color: Colors.green,
             ),
           ),

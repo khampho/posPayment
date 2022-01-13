@@ -31,7 +31,7 @@ class _RePaymentState extends State<RePayment> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("ຮ້ານທີ່ຍັງຄ້າງຊຳລະ"),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.teal,
       ),
       body: ListView.builder(
           itemCount: _data.length,
@@ -64,8 +64,8 @@ class _RePaymentState extends State<RePayment> {
             const Padding(
               padding: EdgeInsets.only(right: 15),
               child: Icon(
-                Icons.arrow_drop_down_sharp,
-                size: 50,
+                Icons.more_horiz,
+                size: 30,
               ),
             ),
           ],

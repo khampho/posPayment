@@ -20,6 +20,7 @@ class _paidStoreState extends State<paidStore> {
     super.initState();
     paidStores.paidStore();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +29,10 @@ class _paidStoreState extends State<paidStore> {
         backgroundColor: Colors.teal,
       ),
       body: ListView.builder(
-        itemCount: paidStores.paidStoreData.length,
-          itemBuilder: (context,index){
+          itemCount: paidStores.paidStoreData.length,
+          itemBuilder: (context, index) {
             return buildDat(index);
-          }
-      ),
+          }),
     );
   }
 
@@ -40,16 +40,26 @@ class _paidStoreState extends State<paidStore> {
     return InkWell(
       splashColor: Colors.yellow,
       highlightColor: Colors.blue,
-      child: Card(
-        color: Colors.white70,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(paidStores.paidStoreData[index].name, style: TextStyle(fontSize: 16,)),
-              Icon(Icons.arrow_drop_down_outlined, size: 40, color: Colors.green,),
-            ],
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: Card(
+          color: Colors.white70,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(paidStores.paidStoreData[index].name,
+                    style: TextStyle(
+                      fontSize: 16,
+                    )),
+                Icon(
+                  Icons.more_horiz,
+                  size: 40,
+                  color: Colors.teal,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -58,7 +68,7 @@ class _paidStoreState extends State<paidStore> {
           context: context,
           builder: (BuildContext context) => AlertDialog(
             //title:  Text(paidStores.paidStoreData[index].name),
-            content:  Container(
+            content: Container(
               height: 100.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -73,14 +83,14 @@ class _paidStoreState extends State<paidStore> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                     const Text('ວັນທີຊຳລະ : '),
+                      const Text('ວັນທີຊຳລະ : '),
                       Text(paidStores.paidStoreData[index].date)
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('ຈຳນວນເງິນ : ' ),
+                      const Text('ຈຳນວນເງິນ : '),
                       Text(f.format(paidStores.paidStoreData[index].price))
                     ],
                   ),
@@ -97,7 +107,10 @@ class _paidStoreState extends State<paidStore> {
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'OK'),
-                child: const Text('OK'),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(color: Colors.teal),
+                ),
               ),
             ],
           ),
@@ -106,5 +119,3 @@ class _paidStoreState extends State<paidStore> {
     );
   }
 }
-
-

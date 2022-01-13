@@ -46,7 +46,6 @@ class _LoginState extends State<Login> {
 
   onPressLogin() async {
     if (_formKey.currentState.validate()) {
-    } else {
       await createLoginModel();
       if (box.hasData('token')) {
         await getProfile();
@@ -67,7 +66,6 @@ class _LoginState extends State<Login> {
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,7 +81,7 @@ class _LoginState extends State<Login> {
                       child: Padding(
                         padding: EdgeInsets.only(top: 200),
                         child: Text(
-                          'Infrasol - POS Staff',
+                          'InfraSol - POS Staff',
                           style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -108,14 +106,9 @@ class _LoginState extends State<Login> {
                                   padding: const EdgeInsets.only(top: 20),
                                   child: TextFormField(
                                       validator: (value) {
-                                        Memodel role = box.read('user');
-                                        if (value == null || value.isEmpty) {
-                                          return 'ກະລຸນາປ້ອນອີເມວ!';
-                                        } else if (box.hasData('token') !=
-                                                null ||
-                                            role.roleId.role != 3) {
-                                          return 'ເມວ ຫຼື ລະຫັດບໍ່ຖືກຕ້ອງ!';
-                                        } else {
+                                        if (value.isEmpty){
+                                          return 'null';
+                                        }else{
                                           return null;
                                         }
                                       },
@@ -138,14 +131,9 @@ class _LoginState extends State<Login> {
                                   width: 250,
                                   child: TextFormField(
                                       validator: (value) {
-                                        Memodel role = box.read('user');
-                                        if (value == null || value.isEmpty) {
-                                          return 'ກະລຸນາປ້ອນລະຫັດຜ່ານ!';
-                                        } else if (box.hasData('token') !=
-                                                null ||
-                                            role.roleId.role != 3) {
-                                          return 'ເມວ ຫຼື ລະຫັດບໍ່ຖືກຕ້ອງ!';
-                                        } else {
+                                        if (value.isEmpty){
+                                          return 'null';
+                                        }else{
                                           return null;
                                         }
                                       },

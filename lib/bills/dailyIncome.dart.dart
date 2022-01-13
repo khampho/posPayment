@@ -22,7 +22,7 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
     dio.options.headers["Authorization"] = "Bearer $token";
     var response = await Dio().get('https://jsonkeeper.com/b/N1ZL');
     DataModel items = DataModel.fromJson(response.data);
-    print(response);
+    //print(response);
     return items;
   }
 
@@ -33,7 +33,7 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
       appBar: AppBar(
         title: const Text('ບິນເກັບເງິນມື້'),
         //centerTitle: true,
-        backgroundColor: Colors.tealAccent.shade400,
+        backgroundColor: Colors.teal,
         actions: [
           InkWell(
             splashColor: Colors.yellow,
@@ -222,7 +222,7 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
           ),
         ),
       ),
-      backgroundColor: Colors.tealAccent.shade400,
+      backgroundColor: Colors.teal,
     );
   }
 }

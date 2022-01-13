@@ -65,7 +65,7 @@ class _HomeMenuState extends State<HomeMenu> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        iconSize: 40,
+        iconSize: 30,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

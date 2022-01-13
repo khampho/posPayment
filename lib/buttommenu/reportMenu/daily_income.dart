@@ -39,14 +39,18 @@ class _DailyIncomeState extends State<DailyIncome> {
                             BoxShadow(color: Colors.grey, spreadRadius: 3),
                           ],
                         ),
-                        child:  Center(
-                          child: Text("ຍອດເງິນລວມ : " + f.format(snapshot.data.totalPrice),
-                              style:
-                              TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+                        child: Center(
+                          child: Text(
+                              "ຍອດເງິນລວມ : " +
+                                  f.format(snapshot.data.totalPrice),
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
-                    SizedBox(height: 5.0,),
+                    SizedBox(
+                      height: 5.0,
+                    ),
                     Container(
                       margin: const EdgeInsetsDirectional.only(
                           top: 1.0, start: 1.0, end: 1.0),
@@ -61,17 +65,14 @@ class _DailyIncomeState extends State<DailyIncome> {
                           Text(
                             'ເລກທີ :',
                             style: TextStyle(
-                              fontSize: 16,fontWeight: FontWeight.bold
-                            ),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Text('ເວລາ :',
                               style: TextStyle(
-                                fontSize: 16,fontWeight: FontWeight.bold
-                              )),
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
                           Text('ຈຳນວນ :',
                               style: TextStyle(
-                                fontSize: 16,fontWeight: FontWeight.bold
-                              )),
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),
@@ -107,7 +108,6 @@ class _DailyIncomeState extends State<DailyIncome> {
                                   style: const TextStyle(
                                       fontSize: 15, color: Colors.black87),
                                 ),
-
                               ],
                             ),
                           ),
@@ -117,7 +117,6 @@ class _DailyIncomeState extends State<DailyIncome> {
                             height: 0.5,
                             color: Colors.grey,
                           ),
-
                         ],
                       ),
                     ),
@@ -126,15 +125,25 @@ class _DailyIncomeState extends State<DailyIncome> {
                       child: Container(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 220),
-                          child:  Text(f.format(snapshot.data.totalPrice),style: const TextStyle(
-                              fontSize: 15, color: Colors.black87,fontWeight: FontWeight.bold)),
+                          child: Text(f.format(snapshot.data.totalPrice),
+                              style: const TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.bold)),
                         ),
                       ),
                     )
                   ],
                 );
               } else {
-                return Center(child: const Text('loading...'));
+                return Center(
+                    child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Icon(
+                    Icons.flip_camera_android,
+                    size: 50.0,
+                  ),
+                ));
               }
             },
           ),

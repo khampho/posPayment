@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pospayment/bills/dailyIncome.dart.dart';
 import 'package:get/get.dart';
+import 'package:pospayment/controllers/callgetme.dart';
 
 class PaymentOfDay extends StatefulWidget {
   const PaymentOfDay({Key key}) : super(key: key);
@@ -11,6 +12,7 @@ class PaymentOfDay extends StatefulWidget {
 class _PaymentOfDayState extends State<PaymentOfDay> {
   final _formKey = GlobalKey<FormState>();
   final _roomId = TextEditingController();
+  CounterController controller = Get.put(CounterController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,16 +28,20 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                 const SizedBox(
                   height: 30.0,
                 ),
-                // ClipRRect(
-                //       borderRadius: BorderRadius.circular(100.0),
-                //       child: Image.network(
-                //         'http://139.59.225.42/v1/uploads/market/' +
-                //             logo.marketId.logo,
-                //         height: 150.0,
-                //         width: 150.0,
-                //         fit: BoxFit.fill,
-                //       ),
-                //     ),
+                Obx(
+                  () => ClipRRect(
+                    borderRadius: BorderRadius.circular(100.0),
+                    child: Image.network(
+                      controller.users.value == null
+                          ? 'https://cdn.logo.com/hotlink-ok/logo-social.png'
+                          : 'http://139.59.225.42/v1/uploads/market/' +
+                              controller.users.value.marketId.logo,
+                      height: 150.0,
+                      width: 150.0,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
                 Form(
                   key: _formKey,
                   child: Container(
@@ -140,7 +146,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
           backgroundColor: Colors.tealAccent.shade400,
           //const Color(0xFFA6F338),
           onPressed: () {
-           Get.toNamed('/qrScan');
+            Get.toNamed('/qrScan');
           }),
       backgroundColor: Colors.tealAccent.shade700,
     );

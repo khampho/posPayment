@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pospayment/apiurl/monthlyIncome.dart';
+import 'package:pospayment/apiUrl/monthlyIncome.dart';
 import 'package:pospayment/models/monthlyPaymentModel.dart';
 
 class RoomNameController extends GetxController {

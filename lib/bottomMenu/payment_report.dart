@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pospayment/buttommenu/reportMenu/daily_income.dart';
-import 'package:pospayment/buttommenu/reportMenu/outstanding.dart';
-import 'package:pospayment/buttommenu/reportMenu/paidStore.dart';
-import 'package:pospayment/buttommenu/reportMenu/repayment.dart';
+import 'package:pospayment/bottomMenu/reportMenu/daily_income.dart';
+import 'package:pospayment/bottommenu/reportMenu/outstanding.dart';
+import 'package:pospayment/bottommenu/reportMenu/paidStore.dart';
+import 'package:pospayment/bottommenu/reportMenu/pending.dart';
 
 class PaymentReport extends StatefulWidget {
   const PaymentReport({Key key}) : super(key: key);
@@ -206,7 +206,7 @@ class _PaymentReportState extends State<PaymentReport> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) {
-                              return const RePayment();
+                              return const Pending();
                             }),
                           );
                         });

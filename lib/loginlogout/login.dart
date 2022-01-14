@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pospayment/apiurl/api.dart';
-import 'package:pospayment/buttommenu/homebuttommenu.dart';
+import 'package:pospayment/apiUrl/api.dart';
+import 'package:pospayment/bottomMenu/homeBottomMenu.dart';
 import 'package:pospayment/models/memodel.dart';
 import 'package:pospayment/models/profile.dart';
 import 'logout.dart';
@@ -66,6 +66,7 @@ class _LoginState extends State<Login> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,9 +107,9 @@ class _LoginState extends State<Login> {
                                   padding: const EdgeInsets.only(top: 20),
                                   child: TextFormField(
                                       validator: (value) {
-                                        if (value.isEmpty){
+                                        if (value.isEmpty) {
                                           return 'null';
-                                        }else{
+                                        } else {
                                           return null;
                                         }
                                       },
@@ -131,9 +132,9 @@ class _LoginState extends State<Login> {
                                   width: 250,
                                   child: TextFormField(
                                       validator: (value) {
-                                        if (value.isEmpty){
+                                        if (value.isEmpty) {
                                           return 'null';
-                                        }else{
+                                        } else {
                                           return null;
                                         }
                                       },

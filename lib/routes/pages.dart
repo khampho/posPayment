@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/Screens/profile.dart';
 import 'package:pospayment/Screens/qr_scan.dart';
-import 'package:pospayment/buttommenu/homebuttommenu.dart';
+import 'package:pospayment/bottomMenu/homeBottomMenu.dart';
 import 'package:pospayment/loginlogout/login.dart';
 import 'package:get/get.dart';
 

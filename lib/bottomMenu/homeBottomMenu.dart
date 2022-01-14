@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pospayment/buttommenu/payment_of_month.dart';
-import 'package:pospayment/buttommenu/payment_report.dart';
+import 'package:pospayment/bottomMenu/payment_of_month.dart';
+import 'package:pospayment/bottomMenu/payment_report.dart';
 import 'package:pospayment/controllers/callgetme.dart';
 import 'package:pospayment/controllers/monthlyPayment.dart';
 import 'package:pospayment/controllers/paidStore.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pospayment/apiurl/dailyIncomeReport.dart';
+import 'package:pospayment/apiUrl/dailyIncomeReport.dart';
 import 'package:pospayment/models/dailyIncomeModel.dart';
 
 class DailyIncome extends StatefulWidget {

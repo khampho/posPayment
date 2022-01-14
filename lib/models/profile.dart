@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pospayment/apiurl/api.dart';
+import 'package:pospayment/apiUrl/api.dart';
 import 'package:http/http.dart' as http;
 import 'memodel.dart';
 

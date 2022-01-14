@@ -29,9 +29,8 @@ class _PendingState extends State<Pending> {
         backgroundColor: Colors.teal,
       ),
       body: ListView.builder(
-          itemCount: customers.length,
-          shrinkWrap: true,
-          itemBuilder: (BuildContext context, index) {
+          itemCount: pend.paidStoreData.length,
+          itemBuilder: (context, index) {
             return _bilItem(index);
           }),
     );
@@ -39,7 +38,7 @@ class _PendingState extends State<Pending> {
 
   Widget _bilItem(int index) {
     return InkWell(
-      splashColor: Colors.teal,
+      splashColor: Colors.red,
       //highlightColor: Colors.blue,
       borderRadius: BorderRadius.circular(12),
       child: Padding(
@@ -58,7 +57,7 @@ class _PendingState extends State<Pending> {
                 Icon(
                   Icons.more_horiz,
                   size: 40,
-                  color: Colors.teal,
+                  color: Colors.red,
                 ),
               ],
             ),

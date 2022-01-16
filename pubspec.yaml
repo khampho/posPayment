@@ -42,8 +42,8 @@ dependencies:
   intl: ^0.16.1
   qr_code_scanner: ^0.3.0
   get: ^3.26.0
-  # qr_code_scanner: ^0.3.5
-#  flutter_sunmi_printer: ^0.2.1
+  flutter_sunmi_printer: ^0.2.1
+
 
 dev_dependencies:
   flutter_test:

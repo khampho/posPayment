@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pospayment/bottomMenu/reportMenu/daily_income.dart';
-import 'package:pospayment/bottommenu/reportMenu/outstanding.dart';
-import 'package:pospayment/bottommenu/reportMenu/paidStore.dart';
-import 'package:pospayment/bottommenu/reportMenu/pending.dart';
+import 'package:pospayment/bottomMenu/reportMenu/outstanding.dart';
+import 'package:pospayment/bottomMenu/reportMenu/paidStore.dart';
+import 'package:pospayment/bottomMenu/reportMenu/pending.dart';
+
 
 class PaymentReport extends StatefulWidget {
   const PaymentReport({Key key}) : super(key: key);

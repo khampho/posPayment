@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pospayment/bottomMenu/payment_of_month.dart';
 import 'package:pospayment/bottomMenu/payment_report.dart';
+import 'package:pospayment/controllers/billTest.dart';
 import 'package:pospayment/controllers/callgetme.dart';
 import 'package:pospayment/controllers/monthlyPayment.dart';
 import 'package:pospayment/controllers/paidStore.dart';
@@ -19,12 +20,14 @@ class _HomeMenuState extends State<HomeMenu> {
   CounterController controller = Get.put(CounterController());
   RoomNameController room = Get.put(RoomNameController());
   paidStoreController paidStores = Get.put(paidStoreController());
+  billTestController bills = Get.put(billTestController());
   @override
   void initState() {
     super.initState();
     controller.getData();
     room.getRoomName();
     paidStores.paidStore();
+    bills.getBillTest();
   }
 
   int _selectedIndex = 0;

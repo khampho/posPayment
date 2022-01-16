@@ -29,26 +29,23 @@ class _OutstandingReportOfDayState extends State<OutstandingReportOfDay> {
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          Expanded(
-            child: SizedBox(
-              width: 300,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'ເລກທີ',
-                    style: TextStyle(
-                      fontSize: 17,
-                    ),
-                  ),
-                  Text('ວັນທີ',
-                      style: TextStyle(
-                        fontSize: 17,
-                      )),
-                  Text('ຈຳນວນ', style: TextStyle(fontSize: 17)),
-                ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text('ງວດທີ່',style: TextStyle(fontSize: 17),
               ),
-            ),
+              Text(
+                'ເລກທີ',
+                style: TextStyle(
+                  fontSize: 17,
+                ),
+              ),
+              Text('ວັນທີ',
+                  style: TextStyle(
+                    fontSize: 17,
+                  )),
+              Text('ຈຳນວນ', style: TextStyle(fontSize: 17)),
+            ],
           ),
           Container(
             margin: const EdgeInsetsDirectional.only(
@@ -56,40 +53,35 @@ class _OutstandingReportOfDayState extends State<OutstandingReportOfDay> {
             height: 0.5,
             color: Colors.grey,
           ),
-          SizedBox(
-            height: 560,
-            width: 300,
-            //padding: EdgeInsets.only(top: 20),
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemCount: _Data.length,
-              itemBuilder: (context, int index) {
-                return SingleChildScrollView(
-                  child: Row(
-                    children: [
-                      Text(
-                        _Data[index].id.toString(),
-                        style: const TextStyle(
-                          fontSize: 15,
-                        ),
+          ListView.separated(
+            shrinkWrap: true,
+            itemCount: _Data.length,
+            itemBuilder: (context, int index) {
+              return SingleChildScrollView(
+                child: Row(
+                  children: [
+                    Text(
+                      _Data[index].id.toString(),
+                      style: const TextStyle(
+                        fontSize: 15,
                       ),
-                      const Spacer(),
-                      Text(
-                        _Data[index].time,
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                      const Spacer(),
-                      Text(
-                        _Data[index].qty.toString() + " ກີບ",
-                        style: const TextStyle(fontSize: 15),
-                      )
-                    ],
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
-            ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      _Data[index].time,
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    const Spacer(),
+                    Text(
+                      _Data[index].qty.toString() + " ກີບ",
+                      style: const TextStyle(fontSize: 15),
+                    )
+                  ],
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(),
           ),
         ],
       ),

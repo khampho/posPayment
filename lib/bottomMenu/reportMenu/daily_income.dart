@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:pospayment/apiUrl/dailyIncomeReport.dart';
 import 'package:pospayment/models/dailyIncomeModel.dart';
+import 'package:pospayment/format/number.dart';
 
 class DailyIncome extends StatefulWidget {
   const DailyIncome({Key key}) : super(key: key);
@@ -11,7 +11,6 @@ class DailyIncome extends StatefulWidget {
 }
 
 class _DailyIncomeState extends State<DailyIncome> {
-  var f = NumberFormat('###,###,##0', "en_US");
   @override
   Widget build(BuildContext context) {
     return Scaffold(

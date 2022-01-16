@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sunmi_printer/flutter_sunmi_printer.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QrScanner extends StatefulWidget {
@@ -44,7 +45,8 @@ class _QrScannerState extends State<QrScanner> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   if (result != null)
-                    Text(' Data: ${result.code}')
+                    _print()
+                    //Text(' Data: ${result.code}')
                   else
                     Text('Scan a code'),
                 ],
@@ -54,6 +56,29 @@ class _QrScannerState extends State<QrScanner> {
         ],
       ),
     );
+  }
+  _print()  async {
+    // Test regular text
+    SunmiPrinter.text(
+      'ໃບບິນ',
+      styles: SunmiStyles(align: SunmiAlign.center),
+    );
+
+    SunmiPrinter.text(
+      'ວັນທີ : 16/01/2022',
+      styles:
+      SunmiStyles(  align: SunmiAlign.left),
+    );
+    SunmiPrinter.hr();
+    SunmiPrinter.emptyLines(1);
+    SunmiPrinter.row(
+      cols: [
+        SunmiCol(text: 'ລາຍການ', width: 6, align: SunmiAlign.left),
+        SunmiCol(text: 'ຈຳນວນເງິນ', width: 6, align: SunmiAlign.right),
+      ],
+    );
+    SunmiPrinter.text(result.code);
+    SunmiPrinter.emptyLines(3);
   }
 
   Widget _buildQrView(BuildContext context) {

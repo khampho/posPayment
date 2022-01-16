@@ -16,12 +16,12 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Obx(() => Text(controller.users.value.marketId.name)),
+        title: const Text('ຂໍ້ມູນຜູ້ໃຊ້'),
         backgroundColor: Colors.teal,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(29),
@@ -31,7 +31,7 @@ class _ProfileState extends State<Profile> {
               children: [
                 Image.asset(
                   'assets/images/user_icon.png',
-                  width: 120,
+                  width: 100,
                 ),
                 Obx(() => AutoSizeText(
                       controller.users.value.firstName +
@@ -42,7 +42,7 @@ class _ProfileState extends State<Profile> {
                       maxLines: 2,
                     )),
                 const SizedBox(
-                  height: 40.0,
+                  height: 30.0,
                 ),
                 Container(
                   margin: const EdgeInsetsDirectional.only(
@@ -199,7 +199,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Container(
                   width: 250,
@@ -228,15 +228,15 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 Container(
-                    padding: const EdgeInsets.only(top: 70, bottom: 20),
-                    child: Align(
-                      child: Obx(
-                        () => Text(
-                            controller.users.value.marketId.name.toString(),
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
-                      ),
-                    ))
+                    padding: const EdgeInsets.only(top: 40, bottom: 35),
+                    // child: Align(
+                    //   child: Obx(
+                    //     () => Text(
+                    //         controller.users.value.marketId.name.toString(),
+                    //         style: const TextStyle(
+                    //             fontSize: 18, fontWeight: FontWeight.bold)),
+                    //   ),
+                    )
               ],
             ),
           ),

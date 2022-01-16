@@ -24,14 +24,14 @@ class _OutStandingState extends State<OutStanding> {
             tabs: [
               Tab(
                   child: Text(
-                'ລາຍເດືອນ',
+                'ປະເພດໂຕະ',
                 style: TextStyle(
                   fontSize: 18,
                 ),
               )),
               Tab(
                   child: Text(
-                'ລາຍປີ',
+                'ປະເພດຫ້ອງເຊົ່າ',
                 style: TextStyle(fontSize: 18),
               )),
             ],

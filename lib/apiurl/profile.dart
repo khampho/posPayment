@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pospayment/apiUrl/api.dart';
 import 'package:http/http.dart' as http;
-import 'memodel.dart';
+import '../models/memodel.dart';
 import 'package:pospayment/apiUrl/token.dart';
 
 Future<Memodel> getProfile() async {

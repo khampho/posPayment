@@ -8,7 +8,7 @@ class billTestController extends GetxController {
   getBillTest() async {
     DataModel data = await getBill();
     //print(data.);
-    datas = data ;
+    datas = data;
     update();
   }
 }

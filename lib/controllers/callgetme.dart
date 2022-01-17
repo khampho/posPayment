@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pospayment/models/profile.dart';
+import 'package:pospayment/apiUrl/profile.dart';
 import '../models/memodel.dart';
 
 class CounterController extends GetxController {

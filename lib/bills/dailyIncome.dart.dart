@@ -210,8 +210,8 @@ class _BillDailyIncomeState extends State<BillDailyIncome> {
                         ),
                         Container(
                           padding: const EdgeInsets.only(bottom: 20, top: 40),
-                          child: Obx(
-                              () => Text("ຫ້ອງການຕະຫລາດ : " + controller.users.value.marketId.telephone)),
+                          child: Obx(() => Text("ຫ້ອງການຕະຫລາດ : " +
+                              controller.users.value.marketId.telephone)),
                         )
                       ],
                     ),

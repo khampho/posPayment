@@ -42,7 +42,6 @@ class _MonthlyIncomeState extends State<MonthlyIncome> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ລາຍຮັບປະຈຳເດືອນ'),
-
         backgroundColor: Colors.teal,
       ),
       body: Container(
@@ -76,18 +75,15 @@ class _MonthlyIncomeState extends State<MonthlyIncome> {
                   children: const [
                     Text(
                       'ເລກທີ',
-                      style: TextStyle(
-                        fontSize: 16,fontWeight: FontWeight.bold
-                      ),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     Text('ເວລາ',
                         style: TextStyle(
-                          fontSize: 16,fontWeight: FontWeight.bold
-                        )),
+                            fontSize: 16, fontWeight: FontWeight.bold)),
                     Text('ຈຳນວນ',
                         style: TextStyle(
-                          fontSize: 16,fontWeight: FontWeight.bold
-                        ))
+                            fontSize: 16, fontWeight: FontWeight.bold))
                   ],
                 ),
               ),

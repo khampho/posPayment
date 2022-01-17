@@ -228,15 +228,15 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 Container(
-                    padding: const EdgeInsets.only(top: 40, bottom: 35),
-                    // child: Align(
-                    //   child: Obx(
-                    //     () => Text(
-                    //         controller.users.value.marketId.name.toString(),
-                    //         style: const TextStyle(
-                    //             fontSize: 18, fontWeight: FontWeight.bold)),
-                    //   ),
-                    )
+                  padding: const EdgeInsets.only(top: 40, bottom: 35),
+                  // child: Align(
+                  //   child: Obx(
+                  //     () => Text(
+                  //         controller.users.value.marketId.name.toString(),
+                  //         style: const TextStyle(
+                  //             fontSize: 18, fontWeight: FontWeight.bold)),
+                  //   ),
+                )
               ],
             ),
           ),

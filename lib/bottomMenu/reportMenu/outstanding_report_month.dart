@@ -21,7 +21,7 @@ class _OutStandingReportOfMonthState extends State<OutStandingReportOfMonth> {
     DataId(id: 112, time: '22/01/2022', qty: 6000),
     DataId(id: 113, time: '22/01/2022', qty: 8000),
     DataId(id: 118, time: '22/01/2022', qty: 8000),
-];
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +31,9 @@ class _OutStandingReportOfMonthState extends State<OutStandingReportOfMonth> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
-              Text('ງວດທີ່',style: TextStyle(fontSize: 17),
+              Text(
+                'ງວດທີ່',
+                style: TextStyle(fontSize: 17),
               ),
               Text(
                 'ເລກທີບິນ',

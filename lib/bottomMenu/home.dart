@@ -4,6 +4,7 @@ import 'package:pospayment/apiUrl/incomeHistory.dart';
 import 'package:get/get.dart';
 import 'package:pospayment/controllers/callgetme.dart';
 import 'package:http/http.dart' as http;
+
 class PaymentOfDay extends StatefulWidget {
   const PaymentOfDay({Key key}) : super(key: key);
   @override
@@ -33,6 +34,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
     //   client.close();
     // }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +134,6 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                               ))),
                     ],
                   ),
-
                 ),
                 const SizedBox(
                   height: 30.0,
@@ -144,7 +145,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                   color: Colors.green,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:18.0),
+                  padding: const EdgeInsets.only(top: 18.0),
                   child: Container(
                     width: 300,
                     height: 40,

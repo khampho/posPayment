@@ -4,7 +4,6 @@ import 'package:pospayment/bottomMenu/reportMenu/outstanding.dart';
 import 'package:pospayment/bottomMenu/reportMenu/paidStore.dart';
 import 'package:pospayment/bottomMenu/reportMenu/pending.dart';
 
-
 class PaymentReport extends StatefulWidget {
   const PaymentReport({Key key}) : super(key: key);
 

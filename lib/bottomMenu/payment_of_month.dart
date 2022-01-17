@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmi_printer/flutter_sunmi_printer.dart';
@@ -8,7 +7,6 @@ import 'package:pospayment/controllers/monthlyPayment.dart';
 import 'package:get/get.dart';
 import 'package:pospayment/format/number.dart';
 import 'package:pospayment/models/monthlyPaymentModel.dart';
-
 
 class PaymentOfMonth extends StatefulWidget {
   const PaymentOfMonth({Key key}) : super(key: key);
@@ -140,9 +138,9 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
   }
 
   Widget _builItem(int index) {
-     return InkWell(
+    return InkWell(
       splashColor: Colors.yellow,
-       borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(12),
       //highlightColor: Colors.orangeAccent,
       child: Padding(
         padding: const EdgeInsets.all(3.0),
@@ -168,12 +166,12 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
         ),
       ),
       onTap: () {
-      return _print(index);
+        return _print(index);
       },
     );
   }
 
-  _print(int index)  async {
+  _print(int index) async {
     // Test regular text
     SunmiPrinter.text(
       'ໃບບິນ',
@@ -182,22 +180,20 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
     SunmiPrinter.emptyLines(1);
     SunmiPrinter.text(
       controller.users.value.marketId.name,
-      styles:
-      SunmiStyles(bold: true, underline: true, align: SunmiAlign.left),
+      styles: SunmiStyles(bold: true, underline: true, align: SunmiAlign.left),
     );
 
     SunmiPrinter.text(
       'ວັນທີ : 16/01/2022',
-      styles:
-      SunmiStyles(  align: SunmiAlign.left),
+      styles: SunmiStyles(align: SunmiAlign.left),
     );
     SunmiPrinter.text(
       'ເລກທີ : 123',
-      styles: SunmiStyles(  align: SunmiAlign.left),
+      styles: SunmiStyles(align: SunmiAlign.left),
     );
     SunmiPrinter.text(
       'ຮ້ານ :' + customers[index].name,
-      styles: SunmiStyles(  align: SunmiAlign.left),
+      styles: SunmiStyles(align: SunmiAlign.left),
     );
     SunmiPrinter.hr();
     SunmiPrinter.emptyLines(1);
@@ -210,25 +206,29 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
     // Test row
 
     for (int i = 0; i < bills.datas.datas.length; i++)
-
       SunmiPrinter.row(
         cols: [
-          SunmiCol(text: bills.datas.datas[i].list, width: 6,align: SunmiAlign.left),
-          SunmiCol(text: f.format(bills.datas.datas[i].price), width: 6, align: SunmiAlign.right),
+          SunmiCol(
+              text: bills.datas.datas[i].list,
+              width: 6,
+              align: SunmiAlign.left),
+          SunmiCol(
+              text: f.format(bills.datas.datas[i].price),
+              width: 6,
+              align: SunmiAlign.right),
         ],
       );
     SunmiPrinter.hr();
     SunmiPrinter.text(
       f.format(int.parse(bills.datas.totalPrice)),
-      styles: SunmiStyles(  align: SunmiAlign.right),
+      styles: SunmiStyles(align: SunmiAlign.right),
     );
     SunmiPrinter.emptyLines(1);
     SunmiPrinter.hr();
     SunmiPrinter.text(
-      'ຜຸ້ເກັບເງິນ : ' +  controller.users.value.firstName,
-      styles: SunmiStyles( underline: true, align: SunmiAlign.right),
+      'ຜຸ້ເກັບເງິນ : ' + controller.users.value.firstName,
+      styles: SunmiStyles(underline: true, align: SunmiAlign.right),
     );
     SunmiPrinter.emptyLines(3);
   }
 }
-

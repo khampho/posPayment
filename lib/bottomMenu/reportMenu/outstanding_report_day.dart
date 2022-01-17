@@ -32,7 +32,9 @@ class _OutstandingReportOfDayState extends State<OutstandingReportOfDay> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
-              Text('ງວດທີ່',style: TextStyle(fontSize: 17),
+              Text(
+                'ງວດທີ່',
+                style: TextStyle(fontSize: 17),
               ),
               Text(
                 'ເລກທີ',

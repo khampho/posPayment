@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/apiUrl/api.dart';
 import 'package:pospayment/bottomMenu/homeBottomMenu.dart';
 import 'package:pospayment/models/memodel.dart';
-import 'package:pospayment/models/profile.dart';
+import 'package:pospayment/apiUrl/profile.dart';
 import 'logout.dart';
 
 class Login extends StatefulWidget {

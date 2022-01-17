@@ -46,7 +46,7 @@ class _QrScannerState extends State<QrScanner> {
                 children: <Widget>[
                   if (result != null)
                     _print()
-                    //Text(' Data: ${result.code}')
+                  //Text(' Data: ${result.code}')
                   else
                     Text('Scan a code'),
                 ],
@@ -57,7 +57,8 @@ class _QrScannerState extends State<QrScanner> {
       ),
     );
   }
-  _print()  async {
+
+  _print() async {
     // Test regular text
     SunmiPrinter.text(
       'ໃບບິນ',
@@ -66,8 +67,7 @@ class _QrScannerState extends State<QrScanner> {
 
     SunmiPrinter.text(
       'ວັນທີ : 16/01/2022',
-      styles:
-      SunmiStyles(  align: SunmiAlign.left),
+      styles: SunmiStyles(align: SunmiAlign.left),
     );
     SunmiPrinter.hr();
     SunmiPrinter.emptyLines(1);

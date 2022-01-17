@@ -1,13 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:pospayment/apiUrl/token.dart';
 import 'package:pospayment/models/monthlyPaymentModel.dart';
 
-get dio => Dio();
-get box => GetStorage();
-getToken() async {
-  String token = await box.read('token');
-  return token;
-}
 
 Future<List<MonthlyPaymentModel>> getMonthlyPayment() async {
   String token = await getToken();

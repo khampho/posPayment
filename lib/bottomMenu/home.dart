@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pospayment/bills/dailyIncome.dart.dart';
+import 'package:pospayment/apiUrl/api.dart';
+import 'package:pospayment/apiUrl/incomeHistory.dart';
 import 'package:get/get.dart';
 import 'package:pospayment/controllers/callgetme.dart';
-
+import 'package:http/http.dart' as http;
 class PaymentOfDay extends StatefulWidget {
   const PaymentOfDay({Key key}) : super(key: key);
   @override
@@ -13,6 +14,25 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
   final _formKey = GlobalKey<FormState>();
   final _roomId = TextEditingController();
   CounterController controller = Get.put(CounterController());
+
+  postRoomId() async {
+    //var client = http.Client();
+    print(_roomId.text);
+    // try {
+    //   //var rs = await client.post(Uri.parse(apiBaseUrl + '/api/make-pos'),
+    //    //   body: {'room_id': , 'password': });
+    //   //print('Response status: ${rs.statusCode}');
+    //   //print('Response body: ${rs.body}');
+    //   // if (rs.statusCode == 200) {
+    //   //   Map<String, dynamic> res =
+    //   //   Map<String, dynamic>.from(jsonDecode(rs.body));
+    //   //   //print(res['data']['token']);
+    //   //   //return token;
+    //   // }
+    // } finally {
+    //   client.close();
+    // }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,74 +64,76 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                 ),
                 Form(
                   key: _formKey,
-                  child: Container(
-                    width: 300,
-                    height: 110,
-                    padding: const EdgeInsets.only(top: 30, bottom: 30),
-                    child: TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'ກະລຸນາປ້ອນລະຫັດຮ້ານ!';
-                          } else {
-                            return null;
-                          }
-                        },
-                        controller: _roomId,
-                        keyboardType: TextInputType.emailAddress,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: const BorderSide(
-                              color: Colors.green,
-                              width: 2,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: const BorderSide(
-                              color: Colors.lightGreen,
-                              width: 2.0,
-                            ),
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Colors.green, width: 2.5),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          labelText: 'ລະຫັດຮ້ານ',
-                          labelStyle: const TextStyle(
-                              color: Colors.green, fontSize: 15),
-                          prefixIcon: const Icon(
-                            Icons.vpn_key,
-                            color: Colors.green,
-                            size: 20.0,
-                          ),
-                        )),
-                  ),
-                ),
-                SizedBox(
-                    width: 300,
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const BillDailyIncome();
-                          }));
-                        },
-                        style: TextButton.styleFrom(
-                            padding: const EdgeInsets.all(12.0),
-                            primary: Colors.white,
-                            backgroundColor: Colors.green,
-                            textStyle: const TextStyle(fontSize: 18),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                              side: const BorderSide(color: Colors.green),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 300,
+                        height: 110,
+                        padding: const EdgeInsets.only(top: 30, bottom: 30),
+                        child: TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'ກະລຸນາປ້ອນລະຫັດຮ້ານ!';
+                              } else {
+                                return null;
+                              }
+                            },
+                            controller: _roomId,
+                            keyboardType: TextInputType.emailAddress,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: const BorderSide(
+                                  color: Colors.green,
+                                  width: 2,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: const BorderSide(
+                                  color: Colors.lightGreen,
+                                  width: 2.0,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.green, width: 2.5),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'ລະຫັດຮ້ານ',
+                              labelStyle: const TextStyle(
+                                  color: Colors.green, fontSize: 15),
+                              prefixIcon: const Icon(
+                                Icons.vpn_key,
+                                color: Colors.green,
+                                size: 20.0,
+                              ),
                             )),
-                        child: const Text(
-                          'ອອກບິນ',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ))),
+                      ),
+                      SizedBox(
+                          width: 300,
+                          child: TextButton(
+                              onPressed: () {
+                                postRoomId();
+                              },
+                              style: TextButton.styleFrom(
+                                  padding: const EdgeInsets.all(12.0),
+                                  primary: Colors.white,
+                                  backgroundColor: Colors.green,
+                                  textStyle: const TextStyle(fontSize: 18),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    side: const BorderSide(color: Colors.green),
+                                  )),
+                              child: const Text(
+                                'ອອກບິນ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ))),
+                    ],
+                  ),
+
+                ),
                 const SizedBox(
                   height: 30.0,
                 ),

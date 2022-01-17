@@ -2,10 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:pospayment/apiUrl/token.dart';
 import 'package:pospayment/controllers/callgetme.dart';
 import 'package:pospayment/format/number.dart';
 import 'package:pospayment/models/dailybillmodel.dart';
-import 'package:pospayment/models/profile.dart';
 import 'package:get/get.dart';
 
 class BillDailyIncome extends StatefulWidget {

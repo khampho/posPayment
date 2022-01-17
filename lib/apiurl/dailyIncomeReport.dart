@@ -1,13 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/models/dailyIncomeModel.dart';
-
-Dio dio = Dio();
-get box => GetStorage();
-getToken() async {
-  String token = await box.read('token');
-  return token;
-}
+import 'package:pospayment/apiUrl/token.dart';
 
 Future<DailyIncomeModel> getDailyIncome() async {
   String token = await getToken();

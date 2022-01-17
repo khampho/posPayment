@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sunmi_printer/flutter_sunmi_printer.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:get/get.dart';
 
 class QrScanner extends StatefulWidget {
   const QrScanner({Key key}) : super(key: key);
@@ -32,54 +32,55 @@ class _QrScannerState extends State<QrScanner> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Qr ສະແກນ'),
-        backgroundColor: Colors.tealAccent.shade400,
+        backgroundColor: Colors.teal,
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(flex: 6, child: _buildQrView(context)),
-          Expanded(
-            flex: 1,
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  if (result != null)
-                    _print()
-                  //Text(' Data: ${result.code}')
-                  else
-                    Text('Scan a code'),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
+      body: Center(child: Expanded(flex: 6, child: _buildQrView(context))),
+      // body: Column(
+      //   children: <Widget>[
+      //     Expanded(flex: 6, child: _buildQrView(context)),
+      //     Expanded(
+      //       flex: 1,
+      //       child: FittedBox(
+      //         fit: BoxFit.contain,
+      //         child: Column(
+      //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //           children: <Widget>[
+      //             if (result != null)
+              
+      //             Text(' Data: ${result.code}')
+      //             else
+      //               Text('Scan a code'),
+      //           ],
+      //         ),
+      //       ),
+      //     )
+      //   ],
+      // ),
     );
   }
 
-  _print() async {
-    // Test regular text
-    SunmiPrinter.text(
-      'ໃບບິນ',
-      styles: SunmiStyles(align: SunmiAlign.center),
-    );
+  // _print() async {
+  //   // Test regular text
+  //   SunmiPrinter.text(
+  //     'ໃບບິນ',
+  //     styles: SunmiStyles(align: SunmiAlign.center),
+  //   );
 
-    SunmiPrinter.text(
-      'ວັນທີ : 16/01/2022',
-      styles: SunmiStyles(align: SunmiAlign.left),
-    );
-    SunmiPrinter.hr();
-    SunmiPrinter.emptyLines(1);
-    SunmiPrinter.row(
-      cols: [
-        SunmiCol(text: 'ລາຍການ', width: 6, align: SunmiAlign.left),
-        SunmiCol(text: 'ຈຳນວນເງິນ', width: 6, align: SunmiAlign.right),
-      ],
-    );
-    SunmiPrinter.text(result.code);
-    SunmiPrinter.emptyLines(3);
-  }
+  //   SunmiPrinter.text(
+  //     'ວັນທີ : 16/01/2022',
+  //     styles: SunmiStyles(align: SunmiAlign.left),
+  //   );
+  //   SunmiPrinter.hr();
+  //   SunmiPrinter.emptyLines(1);
+  //   SunmiPrinter.row(
+  //     cols: [
+  //       SunmiCol(text: 'ລາຍການ', width: 6, align: SunmiAlign.left),
+  //       SunmiCol(text: 'ຈຳນວນເງິນ', width: 6, align: SunmiAlign.right),
+  //     ],
+  //   );
+  //   SunmiPrinter.text(result.code);
+  //   SunmiPrinter.emptyLines(3);
+  // }
 
   Widget _buildQrView(BuildContext context) {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
@@ -108,6 +109,7 @@ class _QrScannerState extends State<QrScanner> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
+        Get.toNamed('/dailyBill',arguments: result.code);
       });
     });
   }

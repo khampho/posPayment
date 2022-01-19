@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pospayment/apiUrl/api.dart';
 import 'package:pospayment/apiUrl/incomeHistory.dart';
 import 'package:get/get.dart';
@@ -13,26 +14,27 @@ class PaymentOfDay extends StatefulWidget {
 
 class _PaymentOfDayState extends State<PaymentOfDay> {
   final _formKey = GlobalKey<FormState>();
-  final _roomId = TextEditingController();
+  TextEditingController _roomId = TextEditingController();
   CounterController controller = Get.put(CounterController());
+  TextEditingController amount = TextEditingController();
 
   postRoomId() async {
-    //var client = http.Client();
-    print(_roomId.text);
-    // try {
-    //   //var rs = await client.post(Uri.parse(apiBaseUrl + '/api/make-pos'),
-    //    //   body: {'room_id': , 'password': });
-    //   //print('Response status: ${rs.statusCode}');
-    //   //print('Response body: ${rs.body}');
-    //   // if (rs.statusCode == 200) {
-    //   //   Map<String, dynamic> res =
-    //   //   Map<String, dynamic>.from(jsonDecode(rs.body));
-    //   //   //print(res['data']['token']);
-    //   //   //return token;
-    //   // }
-    // } finally {
-    //   client.close();
-    // }
+    var client = http.Client();
+    print(DateFormat.yMd().format(DateTime.now()));
+    try {
+      var rs = await client.post(Uri.parse(apiBaseUrl + '/api/make-pos'),
+         body: {'venue_amount': amount.text, 'room_id': _roomId.text ,'payment_date' : '12/01/2022' });
+      print('Response status: ${rs.statusCode}');
+      print('Response body: ${rs.body}');
+      if (rs.statusCode == 200) {
+        // Map<String, dynamic> res =
+        // Map<String, dynamic>.from(jsonDecode(rs.body));
+        //print(res['data']['token']);
+        //return token;
+      }
+    } finally {
+      client.close();
+    }
   }
 
   @override
@@ -70,8 +72,53 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                     children: [
                       Container(
                         width: 300,
-                        height: 110,
-                        padding: const EdgeInsets.only(top: 30, bottom: 30),
+                        height: 85.0,
+                        padding: const EdgeInsets.only(top: 30, bottom: 8.0),
+                        child: TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'amount!';
+                              } else {
+                                return null;
+                              }
+                            },
+                            controller: amount,
+                            keyboardType: TextInputType.emailAddress,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: const BorderSide(
+                                  color: Colors.green,
+                                  width: 2.0,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: const BorderSide(
+                                  color: Colors.lightGreen,
+                                  width: 2.0,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.green, width: 2.5),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'amount',
+                              labelStyle: const TextStyle(
+                                  color: Colors.green, fontSize: 15),
+                              prefixIcon: const Icon(
+                                Icons.vpn_key,
+                                color: Colors.green,
+                                size: 20.0,
+                              ),
+                            )),
+                      ),
+                      Container(
+                        width: 300,
+                        height: 85.0,
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 30),
                         child: TextFormField(
                             validator: (value) {
                               if (value == null || value.isEmpty) {

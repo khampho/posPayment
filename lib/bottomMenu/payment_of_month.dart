@@ -174,7 +174,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
   _print(int index) async {
     // Test regular text
     SunmiPrinter.text(
-      'ໃບບິນ',
+      'Mue uen c thuek lek',
       styles: SunmiStyles(align: SunmiAlign.center),
     );
     SunmiPrinter.emptyLines(1);
@@ -196,7 +196,6 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
       styles: SunmiStyles(align: SunmiAlign.left),
     );
     SunmiPrinter.hr();
-    SunmiPrinter.emptyLines(1);
     SunmiPrinter.row(
       cols: [
         SunmiCol(text: 'ລາຍການ', width: 6, align: SunmiAlign.left),
@@ -204,7 +203,7 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
       ],
     );
     // Test row
-
+    SunmiPrinter.hr();
     for (int i = 0; i < bills.datas.datas.length; i++)
       SunmiPrinter.row(
         cols: [
@@ -223,7 +222,6 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
       f.format(int.parse(bills.datas.totalPrice)),
       styles: SunmiStyles(align: SunmiAlign.right),
     );
-    SunmiPrinter.emptyLines(1);
     SunmiPrinter.hr();
     SunmiPrinter.text(
       'ຜຸ້ເກັບເງິນ : ' + controller.users.value.firstName,

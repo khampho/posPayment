@@ -35,52 +35,8 @@ class _QrScannerState extends State<QrScanner> {
         backgroundColor: Colors.teal,
       ),
       body: Center(child: Expanded(flex: 6, child: _buildQrView(context))),
-      // body: Column(
-      //   children: <Widget>[
-      //     Expanded(flex: 6, child: _buildQrView(context)),
-      //     Expanded(
-      //       flex: 1,
-      //       child: FittedBox(
-      //         fit: BoxFit.contain,
-      //         child: Column(
-      //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //           children: <Widget>[
-      //             if (result != null)
-              
-      //             Text(' Data: ${result.code}')
-      //             else
-      //               Text('Scan a code'),
-      //           ],
-      //         ),
-      //       ),
-      //     )
-      //   ],
-      // ),
     );
   }
-
-  // _print() async {
-  //   // Test regular text
-  //   SunmiPrinter.text(
-  //     'ໃບບິນ',
-  //     styles: SunmiStyles(align: SunmiAlign.center),
-  //   );
-
-  //   SunmiPrinter.text(
-  //     'ວັນທີ : 16/01/2022',
-  //     styles: SunmiStyles(align: SunmiAlign.left),
-  //   );
-  //   SunmiPrinter.hr();
-  //   SunmiPrinter.emptyLines(1);
-  //   SunmiPrinter.row(
-  //     cols: [
-  //       SunmiCol(text: 'ລາຍການ', width: 6, align: SunmiAlign.left),
-  //       SunmiCol(text: 'ຈຳນວນເງິນ', width: 6, align: SunmiAlign.right),
-  //     ],
-  //   );
-  //   SunmiPrinter.text(result.code);
-  //   SunmiPrinter.emptyLines(3);
-  // }
 
   Widget _buildQrView(BuildContext context) {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
@@ -88,8 +44,6 @@ class _QrScannerState extends State<QrScanner> {
             MediaQuery.of(context).size.height < 400)
         ? 300.0
         : 600.0;
-    // To ensure the Scanner view is properly sizes after rotation
-    // we need to listen for Flutter SizeChanged notification and update controller
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,

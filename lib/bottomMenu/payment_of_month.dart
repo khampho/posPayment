@@ -1,11 +1,15 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_sunmi_printer/flutter_sunmi_printer.dart';
 import 'package:pospayment/controllers/billTest.dart';
 import 'package:pospayment/controllers/callgetme.dart';
 import 'package:pospayment/controllers/monthlyPayment.dart';
 import 'package:get/get.dart';
-import 'package:pospayment/format/number.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:pospayment/models/monthlyPaymentModel.dart';
 
 class PaymentOfMonth extends StatefulWidget {
@@ -174,59 +178,188 @@ class _PaymentOfMonthState extends State<PaymentOfMonth> {
   _print(int index) async {
     // Test regular text
     SunmiPrinter.text(
-      'Mue uen c thuek lek',
+      'ກະຊວງການເງິນ',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.center),
+    );
+    SunmiPrinter.text(
+      'ບໍລິສັດ ລັດວິສາຫະກີດ ຫວຍພັດທະນາ',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.center),
+    );
+    SunmiPrinter.text(
+      'ຫວຍດີຈີຕອນ Digital lottery',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.center),
+    );
+    SunmiPrinter.text(
+      '========',
       styles: SunmiStyles(align: SunmiAlign.center),
     );
-    SunmiPrinter.emptyLines(1);
     SunmiPrinter.text(
-      controller.users.value.marketId.name,
-      styles: SunmiStyles(bold: true, underline: true, align: SunmiAlign.left),
-    );
-
-    SunmiPrinter.text(
-      'ວັນທີ : 16/01/2022',
-      styles: SunmiStyles(align: SunmiAlign.left),
+      'ນະຄອນຫຼວງວຽງຈັນ ສາຂາເລກ 3',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.center),
     );
     SunmiPrinter.text(
-      'ເລກທີ : 123',
-      styles: SunmiStyles(align: SunmiAlign.left),
+      'ເລກທີ : 89015936742',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.left),
+    );
+    SunmiPrinter.row(
+      bold: true,
+      cols: [
+        SunmiCol(text: 'ຜູ້ຂາຍ : 1845562', width: 6, align: SunmiAlign.left),
+        SunmiCol(text: 'ເລກເຄື່ອງ : 46730', width: 6, align: SunmiAlign.right),
+      ],
     );
     SunmiPrinter.text(
-      'ຮ້ານ :' + customers[index].name,
-      styles: SunmiStyles(align: SunmiAlign.left),
+      'ງວດທີ : 12',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.left),
+    );
+    SunmiPrinter.text(
+      'ອອກຄັ້ງວັນທີ : 31/01/2022',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.left),
     );
     SunmiPrinter.hr();
     SunmiPrinter.row(
+      bold: true,
       cols: [
-        SunmiCol(text: 'ລາຍການ', width: 6, align: SunmiAlign.left),
-        SunmiCol(text: 'ຈຳນວນເງິນ', width: 6, align: SunmiAlign.right),
+        SunmiCol(text: 'ເລກສ່ຽງ', width: 3, align: SunmiAlign.left),
+        SunmiCol(text: 'ຈຳນວນ', width: 3),
+        SunmiCol(
+          text: 'ເລກສ່ຽງ',
+          width: 3,
+        ),
+        SunmiCol(text: 'ຈຳນວນ', width: 3, align: SunmiAlign.right),
       ],
     );
     // Test row
     SunmiPrinter.hr();
-    for (int i = 0; i < bills.datas.datas.length; i++)
-      SunmiPrinter.row(
-        cols: [
-          SunmiCol(
-              text: bills.datas.datas[i].list,
-              width: 6,
-              align: SunmiAlign.left),
-          SunmiCol(
-              text: f.format(bills.datas.datas[i].price),
-              width: 6,
-              align: SunmiAlign.right),
-        ],
-      );
+    SunmiPrinter.row(
+      bold: true,
+      cols: [
+        SunmiCol(text: '[18]', width: 3, align: SunmiAlign.left),
+        SunmiCol(
+          text: '5,000',
+          width: 3,
+        ),
+        SunmiCol(text: '[48718]', width: 3),
+        SunmiCol(
+          text: '2,000',
+          width: 3,align: SunmiAlign.right
+        ),
+      ],
+    );
+    SunmiPrinter.row(
+      bold: true,
+      cols: [
+        SunmiCol(text: '[58]', width: 3, align: SunmiAlign.left),
+        SunmiCol(
+          text: '5,000',
+          width: 3,
+        ),
+        SunmiCol(text: '[47818]', width: 3),
+        SunmiCol(
+          text: '2,000',
+          width: 3,align: SunmiAlign.right
+        ),
+      ],
+    );
+    SunmiPrinter.row(
+      bold: true,
+      cols: [
+        SunmiCol(text: '[98]', width: 3, align: SunmiAlign.left),
+        SunmiCol(
+          text: '5,000',
+          width: 3,
+        ),
+        SunmiCol(text: '[48758]', width: 3),
+        SunmiCol(
+          text: '2,000',align: SunmiAlign.right,
+          width: 3,
+        ),
+      ],
+    );
+    SunmiPrinter.row(
+      bold: true,
+      cols: [
+        SunmiCol(text: '[718]', width: 3, align: SunmiAlign.left),
+        SunmiCol(
+          text: '5,000',
+          width: 3,
+        ),
+        SunmiCol(text: '[]', width: 3),
+        SunmiCol(
+          text: '0',
+          width: 3,align: SunmiAlign.right
+        ),
+      ],
+    );
+    SunmiPrinter.row(
+      bold: true,
+      cols: [
+        SunmiCol(text: '[758]', width: 3, align: SunmiAlign.left),
+        SunmiCol(
+          text: '5,000',
+          width: 3,
+        ),
+        SunmiCol(text: '[]', width: 3),
+        SunmiCol(
+          text: '0',
+          width: 3,align: SunmiAlign.right
+        ),
+      ],
+    );
+    SunmiPrinter.row(
+      bold: true,
+      cols: [
+        SunmiCol(text: '[798]', width: 3, align: SunmiAlign.left),
+        SunmiCol(
+          text: '5,000',
+          width: 3,align: SunmiAlign.right
+        ),
+        SunmiCol(text: '[]', width: 3),
+        SunmiCol(
+          text: '0',
+          width: 3,align: SunmiAlign.right
+        ),
+      ],
+    );
+    // for (int i = 0; i < bills.datas.datas.length; i++)
+    //   SunmiPrinter.row(
+    //     cols: [
+    //       SunmiCol(
+    //           text: bills.datas.datas[i].list,
+    //           width: 6,
+    //           align: SunmiAlign.left),
+    //       SunmiCol(
+    //           text: f.format(bills.datas.datas[i].price),
+    //           width: 6,
+    //           align: SunmiAlign.right),
+    //     ],
+    //   );
     SunmiPrinter.hr();
-    SunmiPrinter.text(
-      f.format(int.parse(bills.datas.totalPrice)),
-      styles: SunmiStyles(align: SunmiAlign.right),
+    SunmiPrinter.row(
+      bold: true,
+      cols: [
+        SunmiCol(text: 'ລວມເງິນທັງໝົດ :', width: 7, align: SunmiAlign.center),
+        SunmiCol(text: '36,000', width: 5, align: SunmiAlign.right),
+      ],
     );
     SunmiPrinter.hr();
     SunmiPrinter.text(
-      'ຜຸ້ເກັບເງິນ : ' + controller.users.value.firstName,
-      styles: SunmiStyles(underline: true, align: SunmiAlign.right),
+      'ເວລາຊື້ : 31/01/2022  19:23:12',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.left),
     );
+    SunmiPrinter.text(
+      'ເບີໂທຕິຕໍ່ : 0305675666',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.left),
+    );
+    SunmiPrinter.text(
+      'ໝົດກຳນົດຮັບລາງວັນ : 18/02/2022',
+      styles: SunmiStyles(bold: true, align: SunmiAlign.left),
+    );
+    ByteData bytes = await rootBundle
+        .load('assets/images/istockphoto-1028347722-170667a.jpg');
+    final buffer = bytes.buffer;
+    final imgData = base64.encode(Uint8List.view(buffer));
+    SunmiPrinter.image(imgData);
     SunmiPrinter.emptyLines(3);
   }
 }

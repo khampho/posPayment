@@ -1,10 +1,17 @@
+import 'dart:convert';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_sunmi_printer/flutter_sunmi_printer.dart';
 import 'package:pospayment/apiUrl/api.dart';
-import 'package:pospayment/apiUrl/incomeHistory.dart';
 import 'package:get/get.dart';
+import 'package:pospayment/apiUrl/incomeHistory.dart';
 import 'package:pospayment/controllers/callgetme.dart';
 import 'package:http/http.dart' as http;
+import 'package:pospayment/format/date.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class PaymentOfDay extends StatefulWidget {
   const PaymentOfDay({Key key}) : super(key: key);
@@ -20,20 +27,59 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
 
   postRoomId() async {
     var client = http.Client();
-    print(DateFormat.yMd().format(DateTime.now()));
     try {
-      var rs = await client.post(Uri.parse(apiBaseUrl + '/api/make-pos'),
-         body: {'venue_amount': amount.text, 'room_id': _roomId.text ,'payment_date' : '12/01/2022' });
+      var rs =
+          await client.post(Uri.parse(apiBaseUrl + '/api/make-pos'), body: {
+        'venue_amount': amount.text,
+        'room_id': _roomId.text,
+        'payment_date': dateFormat.format(DateTime.now())
+      });
       print('Response status: ${rs.statusCode}');
       print('Response body: ${rs.body}');
-      if (rs.statusCode == 200) {
-        // Map<String, dynamic> res =
-        // Map<String, dynamic>.from(jsonDecode(rs.body));
-        //print(res['data']['token']);
-        //return token;
+      if (rs.statusCode == 401) {
+        return showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+                  //title:  Text(paidStores.paidStoreData[index].name),
+                  content: Container(
+                    height: 100.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [const Text('Bill error')],
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'OK'),
+                      child: const Text(
+                        'OK',
+                        style: TextStyle(color: Colors.teal),
+                      ),
+                    ),
+                  ],
+                ));
       }
     } finally {
       client.close();
+    }
+  }
+
+  GlobalKey _globalKey = new GlobalKey();
+
+  Future<Uint8List> _capturePng() async {
+    try {
+      RenderRepaintBoundary boundary =
+          _globalKey.currentContext.findRenderObject();
+      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+      ByteData byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      var pngBytes = byteData.buffer.asUint8List();
+      print(pngBytes);
+      setState(() {});
+      return pngBytes;
+    } catch (e) {
+      print(e);
+      return e;
     }
   }
 
@@ -50,22 +96,22 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 30.0,
+                  height: 10.0,
                 ),
-                Obx(
-                  () => ClipRRect(
-                    borderRadius: BorderRadius.circular(100.0),
-                    child: Image.network(
-                      controller.users.value == null
-                          ? 'https://cdn.logo.com/hotlink-ok/logo-social.png'
-                          : 'http://139.59.225.42/v1/uploads/market/' +
-                              controller.users.value.marketId.logo,
-                      height: 150.0,
-                      width: 150.0,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
+                // Obx(
+                //   () => ClipRRect(
+                //     borderRadius: BorderRadius.circular(100.0),
+                //     child: Image.network(
+                //       controller.users.value == null
+                //           ? 'https://cdn.logo.com/hotlink-ok/logo-social.png'
+                //           : 'http://139.59.225.42/v1/uploads/market/' +
+                //               controller.users.value.marketId.logo,
+                //       height: 150.0,
+                //       width: 150.0,
+                //       fit: BoxFit.fill,
+                //     ),
+                //   ),
+                // ),
                 Form(
                   key: _formKey,
                   child: Column(
@@ -164,7 +210,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                           width: 300,
                           child: TextButton(
                               onPressed: () {
-                                postRoomId();
+                                getIncomeHistory();
                               },
                               style: TextButton.styleFrom(
                                   padding: const EdgeInsets.all(12.0),
@@ -210,6 +256,17 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                     ),
                   ),
                 ),
+                RepaintBoundary(
+                  key: _globalKey,
+                  child: Container(
+                    color: Colors.white,
+                    child: QrImage(
+                      data: "12345gfgf67890",
+                      version: QrVersions.auto,
+                      size: 100.0,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -224,10 +281,20 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
           ),
           backgroundColor: Colors.tealAccent.shade400,
           //const Color(0xFFA6F338),
-          onPressed: () {
-            Get.toNamed('/qrScan');
+          onPressed: () async {
+            //Get.toNamed('/qrScan');
+            await _capturePng();
+            _print();
           }),
       backgroundColor: Colors.tealAccent.shade700,
     );
+  }
+
+  _print() async {
+    // ByteData bytes = await rootBundle.load('');
+    final buffer = await _capturePng();
+    final imgData = base64.encode(buffer);
+    SunmiPrinter.image(imgData);
+    SunmiPrinter.emptyLines(3);
   }
 }

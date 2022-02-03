@@ -3,10 +3,10 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pospayment/apiUrl/api.dart';
-import 'package:pospayment/bottomMenu/homeBottomMenu.dart';
 import 'package:pospayment/models/memodel.dart';
 import 'package:pospayment/apiUrl/profile.dart';
 import 'logout.dart';
+import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
   const Login({Key key}) : super(key: key);
@@ -17,8 +17,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final email = TextEditingController();
-  final password = TextEditingController();
+   final email = TextEditingController(text: "pospayment123@gmail.com");
+  final password = TextEditingController(text: "pospayment123");
   final box = GetStorage();
   Future<dynamic> createLoginModel() async {
     var client = http.Client();
@@ -30,14 +30,10 @@ class _LoginState extends State<Login> {
           // body: jsonEncode(
           //     <String, String>{'email': email.text, 'password': password.text}),
           body: {'email': email.text, 'password': password.text});
-      //print('Response status: ${rs.statusCode}');
-      //print('Response body: ${rs.body}');
       if (rs.statusCode == 200) {
         Map<String, dynamic> res =
             Map<String, dynamic>.from(jsonDecode(rs.body));
         await box.write('token', res['data']['token']);
-        //print(res['data']['token']);
-        //return token;
       }
     } finally {
       client.close();
@@ -52,14 +48,9 @@ class _LoginState extends State<Login> {
         if (box.hasData('user')) {
           Memodel role = box.read('user');
           if (role.roleId.role == 3) {
-            print(role.roleId.role);
-            //Navigator.pushNamed(context, '/home');
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HomeMenu(),
-            ));
+            Get.toNamed('/home');
           } else {
             await removeToken();
-            print('role != 3');
             Login();
           }
         }

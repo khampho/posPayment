@@ -70,19 +70,17 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
     try {
       RenderRepaintBoundary boundary =
           _globalKey.currentContext.findRenderObject();
-      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+      ui.Image image = await boundary.toImage(pixelRatio: 1.0);
       ByteData byteData =
           await image.toByteData(format: ui.ImageByteFormat.png);
       var pngBytes = byteData.buffer.asUint8List();
-      print(pngBytes);
-      setState(() {});
       return pngBytes;
     } catch (e) {
       print(e);
       return e;
     }
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -256,14 +254,17 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                     ),
                   ),
                 ),
-                RepaintBoundary(
-                  key: _globalKey,
-                  child: Container(
-                    color: Colors.white,
-                    child: QrImage(
-                      data: "12345gfgf67890",
-                      version: QrVersions.auto,
-                      size: 100.0,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RepaintBoundary(
+                    key: _globalKey,
+                    child: Container(
+                      color: Colors.white,
+                      child: QrImage(
+                        data: "12345gfgf67890",
+                        version: QrVersions.auto,
+                        size: 150.0,
+                      ),
                     ),
                   ),
                 ),
@@ -294,7 +295,7 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
     // ByteData bytes = await rootBundle.load('');
     final buffer = await _capturePng();
     final imgData = base64.encode(buffer);
-    SunmiPrinter.image(imgData);
+    SunmiPrinter.image(imgData,align: SunmiAlign.center);
     SunmiPrinter.emptyLines(3);
   }
 }

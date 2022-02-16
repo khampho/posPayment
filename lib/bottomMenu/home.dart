@@ -260,10 +260,14 @@ class _PaymentOfDayState extends State<PaymentOfDay> {
                     key: _globalKey,
                     child: Container(
                       color: Colors.white,
-                      child: QrImage(
-                        data: "12345gfgf67890",
-                        version: QrVersions.auto,
-                        size: 150.0,
+                      child: Column(
+                        children: [
+                          QrImage(
+                            data: "12345gfgf67890",
+                            version: QrVersions.auto,
+                            size: 150.0,
+                          ),
+                        ],
                       ),
                     ),
                   ),
